@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels & Accommodation - Hoi An Tourism</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Hoi An Tourism</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link active">Hotels</a>
+                </li>
+                <li class="nav-item">
+                    <a href="attractions.html" class="nav-link">Attractions</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Hotels & Accommodation</h1>
+            <p>Find your perfect stay in beautiful Hoi An</p>
+        </div>
+    </section>
+
+    <!-- Hotels Section -->
+    <section class="hotels">
+        <div class="container">
+            <div class="hotels-grid">
+                <!-- Hotel 1 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <div class="image-placeholder">🏨 Hoi An Riverside Resort</div>
+                        <div class="hotel-price">$120/night</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>Hoi An Riverside Resort & Spa</h3>
+                        <div class="hotel-rating">
+                            ⭐⭐⭐⭐⭐ (4.8/5) - 324 reviews
+                        </div>
+                        <p>Luxury riverside resort with traditional Vietnamese architecture, spa services, and stunning river views.</p>
+                        <div class="hotel-amenities">
+                            <span class="amenity">🏊 Pool</span>
+                            <span class="amenity">🍽️ Restaurant</span>
+                            <span class="amenity">💆 Spa</span>
+                            <span class="amenity">🅿️ Parking</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="bookRoom('Hoi An Riverside Resort & Spa', 'Deluxe River View', 120)">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Hotel 2 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <div class="image-placeholder">🏮 Ancient House Resort</div>
+                        <div class="hotel-price">$80/night</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>Ancient House Resort</h3>
+                        <div class="hotel-rating">
+                            ⭐⭐⭐⭐ (4.5/5) - 156 reviews
+                        </div>
+                        <p>Charming boutique resort in the heart of the ancient town, walking distance to all attractions.</p>
+                        <div class="hotel-amenities">
+                            <span class="amenity">🏛️ Historic</span>
+                            <span class="amenity">🍽️ Restaurant</span>
+                            <span class="amenity">🚲 Bike Rental</span>
+                            <span class="amenity">❄️ AC</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="bookRoom('Ancient House Resort', 'Traditional Suite', 80)">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Hotel 3 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <div class="image-placeholder">🌺 Garden Villa Hotel</div>
+                        <div class="hotel-price">$65/night</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>Garden Villa Hotel</h3>
+                        <div class="hotel-rating">
+                            ⭐⭐⭐⭐ (4.3/5) - 89 reviews
+                        </div>
+                        <p>Peaceful garden setting with comfortable rooms, perfect for families and budget-conscious travelers.</p>
+                        <div class="hotel-amenities">
+                            <span class="amenity">🌳 Garden</span>
+                            <span class="amenity">👨‍👩‍👧‍👦 Family</span>
+                            <span class="amenity">🍳 Breakfast</span>
+                            <span class="amenity">📶 WiFi</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="bookRoom('Garden Villa Hotel', 'Family Room', 65)">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Hotel 4 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <div class="image-placeholder">🏖️ Beach Front Resort</div>
+                        <div class="hotel-price">$95/night</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>Beach Front Resort</h3>
+                        <div class="hotel-rating">
+                            ⭐⭐⭐⭐ (4.4/5) - 203 reviews
+                        </div>
+                        <p>Beachfront location with direct beach access, water sports, and sunset views over the South China Sea.</p>
+                        <div class="hotel-amenities">
+                            <span class="amenity">🏖️ Beach</span>
+                            <span class="amenity">🏄 Water Sports</span>
+                            <span class="amenity">🍹 Bar</span>
+                            <span class="amenity">🏊 Pool</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="bookRoom('Beach Front Resort', 'Ocean View', 95)">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Hotel 5 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <div class="image-placeholder">🎋 Bamboo Eco Lodge</div>
+                        <div class="hotel-price">$45/night</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>Bamboo Eco Lodge</h3>
+                        <div class="hotel-rating">
+                            ⭐⭐⭐⭐ (4.2/5) - 67 reviews
+                        </div>
+                        <p>Sustainable eco-friendly lodge with bamboo architecture, organic garden, and authentic local experience.</p>
+                        <div class="hotel-amenities">
+                            <span class="amenity">🌱 Eco-friendly</span>
+                            <span class="amenity">🥬 Organic</span>
+                            <span class="amenity">🚲 Bike Tours</span>
+                            <span class="amenity">🧘 Yoga</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="bookRoom('Bamboo Eco Lodge', 'Eco Bungalow', 45)">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Hotel 6 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <div class="image-placeholder">🏰 Royal Heritage Hotel</div>
+                        <div class="hotel-price">$150/night</div>
+                    </div>
+                    <div class="hotel-content">
+                        <h3>Royal Heritage Hotel</h3>
+                        <div class="hotel-rating">
+                            ⭐⭐⭐⭐⭐ (4.9/5) - 412 reviews
+                        </div>
+                        <p>Luxury heritage hotel in a restored French colonial building with premium amenities and personalized service.</p>
+                        <div class="hotel-amenities">
+                            <span class="amenity">👑 Luxury</span>
+                            <span class="amenity">🏛️ Heritage</span>
+                            <span class="amenity">🛎️ Concierge</span>
+                            <span class="amenity">🚗 Transfer</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="bookRoom('Royal Heritage Hotel', 'Presidential Suite', 150)">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hoi An Tourism</h3>
+                    <p>Your gateway to experiencing the authentic beauty of Vietnam's ancient town.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="hotels.html">Hotels</a></li>
+                        <li><a href="attractions.html">Attractions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📧 info@hoiantourism.vn</p>
+                    <p>📞 +84 235 123 456</p>
+                    <p>📍 Hoi An, Quang Nam, Vietnam</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hoi An Tourism. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <div class="booking-form">
+                <h2>Book Your Room</h2>
+                <div id="selectedHotel">
+                    <h3 id="hotelName"></h3>
+                    <p><strong>Room Type:</strong> <span id="roomType"></span></p>
+                    <p><strong>Price:</strong> $<span id="roomPrice"></span>/night</p>
+                </div>
+                
+                <form onsubmit="handleBooking(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkInDate">Check-in Date:</label>
+                            <input type="date" id="checkInDate" name="checkInDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkOutDate">Check-out Date:</label>
+                            <input type="date" id="checkOutDate" name="checkOutDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests">Number of Guests:</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5+ Guests</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specialRequests">Special Requests (Optional):</label>
+                        <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Any special requests or preferences..."></textarea>
+                    </div>
+                    
+                    <div class="booking-summary">
+                        <h4>Booking Summary</h4>
+                        <p><strong>Total Nights:</strong> <span id="totalNights">0</span></p>
+                        <p><strong>Total Price:</strong> $<span id="totalPrice">0</span></p>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" onclick="showRegisterForm()">Register here</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Register</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerUsername">Username:</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" onclick="showLoginForm()">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard Modal -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDashboardModal()">&times;</span>
+            <div id="userDashboard">
+                <h2>Welcome, <span id="username"></span>!</h2>
+                <div class="dashboard-section">
+                    <h3>Your Bookings</h3>
+                    <div id="userBookings">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

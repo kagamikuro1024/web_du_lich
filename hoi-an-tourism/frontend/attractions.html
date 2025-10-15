@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractions - Hoi An Tourism</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Hoi An Tourism</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link">Hotels</a>
+                </li>
+                <li class="nav-item">
+                    <a href="attractions.html" class="nav-link active">Attractions</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Hoi An Attractions</h1>
+            <p>Discover the magic and history of ancient Vietnam</p>
+        </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section class="attractions">
+        <div class="container">
+            
+            <!-- Japanese Covered Bridge -->
+            <div class="attraction-detail">
+                <div class="attraction-image">
+                    <div class="image-placeholder">🌉 Japanese Covered Bridge (Chùa Cầu)</div>
+                </div>
+                <div class="attraction-content">
+                    <h2>Japanese Covered Bridge (Chùa Cầu)</h2>
+                    <div class="attraction-meta">
+                        <span class="location">📍 Nguyen Thi Minh Khai Street</span>
+                        <span class="rating">⭐ 4.7/5 (2,340 reviews)</span>
+                    </div>
+                    <p>
+                        The iconic Japanese Covered Bridge, built in the 16th century, is Hoi An's most famous landmark. 
+                        This beautiful wooden bridge connects the Japanese and Chinese quarters of the ancient town. 
+                        Legend says it was built to kill a monster whose head, heart, and tail lay across Vietnam, 
+                        India, and Japan respectively.
+                    </p>
+                    <div class="attraction-highlights">
+                        <h4>Highlights:</h4>
+                        <ul>
+                            <li>🏛️ 400-year-old architectural masterpiece</li>
+                            <li>🎨 Beautiful carved decorations and statues</li>
+                            <li>📸 Perfect spot for photography</li>
+                            <li>🌙 Magical atmosphere during full moon festivals</li>
+                        </ul>
+                    </div>
+                    <div class="visit-info">
+                        <p><strong>Opening Hours:</strong> 24/7 (Free to cross)</p>
+                        <p><strong>Best Time to Visit:</strong> Early morning or evening for fewer crowds</p>
+                        <p><strong>Entry Fee:</strong> Free (included in Old Town ticket)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Old Town -->
+            <div class="attraction-detail">
+                <div class="attraction-image">
+                    <div class="image-placeholder">🏮 Hoi An Ancient Town</div>
+                </div>
+                <div class="attraction-content">
+                    <h2>Hoi An Ancient Town</h2>
+                    <div class="attraction-meta">
+                        <span class="location">📍 Central Hoi An</span>
+                        <span class="rating">⭐ 4.8/5 (5,678 reviews)</span>
+                    </div>
+                    <p>
+                        A UNESCO World Heritage Site, Hoi An Ancient Town is a remarkably well-preserved example 
+                        of a Southeast Asian trading port from the 15th to 19th centuries. Its buildings and 
+                        street plan reflect the influences of indigenous and foreign cultures over time.
+                    </p>
+                    <div class="attraction-highlights">
+                        <h4>Highlights:</h4>
+                        <ul>
+                            <li>🏛️ 844 officially recognized historic buildings</li>
+                            <li>🏮 Colorful lanterns lining the streets</li>
+                            <li>🎭 Traditional craft workshops</li>
+                            <li>🍜 Authentic local restaurants and cafes</li>
+                        </ul>
+                    </div>
+                    <div class="visit-info">
+                        <p><strong>Opening Hours:</strong> 24/7</p>
+                        <p><strong>Ticket:</strong> Old Town Ticket required (120,000 VND)</p>
+                        <p><strong>Includes:</strong> Entry to 5 heritage sites of your choice</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thu Bon River -->
+            <div class="attraction-detail">
+                <div class="attraction-image">
+                    <div class="image-placeholder">🛶 Thu Bon River</div>
+                </div>
+                <div class="attraction-content">
+                    <h2>Thu Bon River</h2>
+                    <div class="attraction-meta">
+                        <span class="location">📍 Flows through Hoi An</span>
+                        <span class="rating">⭐ 4.6/5 (1,892 reviews)</span>
+                    </div>
+                    <p>
+                        The Thu Bon River has been the lifeblood of Hoi An for centuries. Take a peaceful boat 
+                        ride to experience the town from a different perspective, especially beautiful during 
+                        sunset when the ancient buildings reflect in the calm waters.
+                    </p>
+                    <div class="attraction-highlights">
+                        <h4>Activities:</h4>
+                        <ul>
+                            <li>🛶 Traditional basket boat tours</li>
+                            <li>🌅 Sunset river cruises</li>
+                            <li>🏮 Evening lantern boat rides</li>
+                            <li>🎣 Fishing experiences with locals</li>
+                        </ul>
+                    </div>
+                    <div class="visit-info">
+                        <p><strong>Best Time:</strong> Late afternoon for sunset views</p>
+                        <p><strong>Boat Tours:</strong> 150,000 - 300,000 VND per person</p>
+                        <p><strong>Duration:</strong> 1-2 hours depending on tour</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- An Bang Beach -->
+            <div class="attraction-detail">
+                <div class="attraction-image">
+                    <div class="image-placeholder">🏖️ An Bang Beach</div>
+                </div>
+                <div class="attraction-content">
+                    <h2>An Bang Beach</h2>
+                    <div class="attraction-meta">
+                        <span class="location">📍 4km from Hoi An center</span>
+                        <span class="rating">⭐ 4.5/5 (967 reviews)</span>
+                    </div>
+                    <p>
+                        Just a short bike ride from Hoi An's ancient town, An Bang Beach offers pristine white 
+                        sand and clear blue waters. This peaceful beach is perfect for relaxing after exploring 
+                        the cultural sites, with fewer crowds than other Vietnamese beaches.
+                    </p>
+                    <div class="attraction-highlights">
+                        <h4>Features:</h4>
+                        <ul>
+                            <li>🏖️ Clean, white sandy beach</li>
+                            <li>🏄‍♂️ Surfing and water sports</li>
+                            <li>🍹 Beachside bars and restaurants</li>
+                            <li>🚲 Easy bike ride from town</li>
+                        </ul>
+                    </div>
+                    <div class="visit-info">
+                        <p><strong>Distance:</strong> 4km from Ancient Town</p>
+                        <p><strong>Transportation:</strong> Bicycle (20 mins) or motorbike (10 mins)</p>
+                        <p><strong>Best Time:</strong> Morning or late afternoon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Son Sanctuary -->
+            <div class="attraction-detail">
+                <div class="attraction-image">
+                    <div class="image-placeholder">🏛️ My Son Sanctuary</div>
+                </div>
+                <div class="attraction-content">
+                    <h2>My Son Sanctuary</h2>
+                    <div class="attraction-meta">
+                        <span class="location">📍 60km from Hoi An</span>
+                        <span class="rating">⭐ 4.4/5 (1,234 reviews)</span>
+                    </div>
+                    <p>
+                        My Son Sanctuary is a cluster of abandoned and partially ruined Hindu temples constructed 
+                        between the 4th and 14th centuries by the Champa civilization. This UNESCO World Heritage 
+                        Site offers insight into the ancient Cham culture and their impressive architectural skills.
+                    </p>
+                    <div class="attraction-highlights">
+                        <h4>Highlights:</h4>
+                        <ul>
+                            <li>🏛️ Ancient Cham temple ruins (4th-14th century)</li>
+                            <li>🎭 Traditional Cham cultural performances</li>
+                            <li>🌿 Beautiful mountain and forest setting</li>
+                            <li>📚 Museum with Cham artifacts</li>
+                        </ul>
+                    </div>
+                    <div class="visit-info">
+                        <p><strong>Distance:</strong> 60km (1.5-hour drive) from Hoi An</p>
+                        <p><strong>Entry Fee:</strong> 150,000 VND</p>
+                        <p><strong>Best Time:</strong> Early morning (cooler weather)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tra Que Vegetable Village -->
+            <div class="attraction-detail">
+                <div class="attraction-image">
+                    <div class="image-placeholder">🥬 Tra Que Village</div>
+                </div>
+                <div class="attraction-content">
+                    <h2>Tra Que Vegetable Village</h2>
+                    <div class="attraction-meta">
+                        <span class="location">📍 3km from Hoi An center</span>
+                        <span class="rating">⭐ 4.3/5 (578 reviews)</span>
+                    </div>
+                    <p>
+                        Experience authentic Vietnamese rural life at Tra Que Village, famous for its organic 
+                        vegetables and herbs. Join a cooking class, work alongside local farmers, or simply 
+                        bike through the peaceful countryside to see traditional farming methods.
+                    </p>
+                    <div class="attraction-highlights">
+                        <h4>Activities:</h4>
+                        <ul>
+                            <li>🚲 Scenic bicycle tours through farms</li>
+                            <li>👨‍🌾 Hands-on farming experience</li>
+                            <li>🍳 Cooking classes with fresh ingredients</li>
+                            <li>🥗 Farm-to-table dining experiences</li>
+                        </ul>
+                    </div>
+                    <div class="visit-info">
+                        <p><strong>Distance:</strong> 3km (15-minute bike ride)</p>
+                        <p><strong>Tours:</strong> Half-day or full-day options available</p>
+                        <p><strong>Price:</strong> 200,000 - 400,000 VND per person</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hoi An Tourism</h3>
+                    <p>Your gateway to experiencing the authentic beauty of Vietnam's ancient town.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="hotels.html">Hotels</a></li>
+                        <li><a href="attractions.html">Attractions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📧 info@hoiantourism.vn</p>
+                    <p>📞 +84 235 123 456</p>
+                    <p>📍 Hoi An, Quang Nam, Vietnam</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hoi An Tourism. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" onclick="showRegisterForm()">Register here</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Register</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerUsername">Username:</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" onclick="showLoginForm()">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard Modal -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDashboardModal()">&times;</span>
+            <div id="userDashboard">
+                <h2>Welcome, <span id="username"></span>!</h2>
+                <div class="dashboard-section">
+                    <h3>Your Bookings</h3>
+                    <div id="userBookings">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
