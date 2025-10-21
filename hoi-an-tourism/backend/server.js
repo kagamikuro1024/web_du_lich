@@ -5,15 +5,33 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const JWT_SECRET = 'your-secret-key'; // In production, use environment variable
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // In production, use environment variable
+
+// Import booking routes
+const bookingRoutes = require('./routes/booking');
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: true, // Allow all origins for development
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Serve static files from frontend folder
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Add request logging for debugging
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+    next();
+});
 
 // Serve static files from frontend directory
 app.use(express.static(path.join(__dirname, '../frontend')));
@@ -75,9 +93,21 @@ function authenticateToken(req, res, next) {
 
 // Routes
 
+// Booking routes
+app.use('/api/booking', bookingRoutes);
+
 // Root route - serve the main page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
+// Serve other HTML pages
+app.get('/hotels', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/hotels.html'));
+});
+
+app.get('/attractions', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/attractions.html'));
 });
 
 // User Registration
