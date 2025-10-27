@@ -1,27 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attractions - Hoi An Tourism</title>
+    <title>Giới Thiệu - Khu Sinh Thái Nhà Tôi - Hòa Bình</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/homepage-modern.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar navbar-transparent">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>Hoi An Tourism</h2>
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a href="hotels.html" class="nav-link">Hotels</a>
+                    <a href="hotels.html" class="nav-link">Đặt phòng</a>
                 </li>
                 <li class="nav-item">
-                    <a href="attractions.html" class="nav-link active">Attractions</a>
+                    <a href="attractions.html" class="nav-link active">Giới thiệu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="restaurant.html" class="nav-link">Nhà hàng</a>
                 </li>
                 <li class="nav-item" id="auth-nav">
                     <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
@@ -35,217 +41,147 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Hoi An Attractions</h1>
-            <p>Discover the magic and history of ancient Vietnam</p>
+    <!-- Hero Section -->
+    <section class="hero-fullscreen">
+        <div class="hero-background" style="background-image: url('assets/images/main.jpg');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content-centered">
+            <h1 class="hero-title">Khu Du Lịch Sinh Thái Nhà Tôi</h1>
+            <p class="hero-subtitle">Thiên đường nghỉ dưỡng giữa núi rừng Hòa Bình - Nơi hòa mình vào thiên nhiên</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('about')">Khám phá ngay</button>
+                <button class="btn btn-secondary" onclick="window.location.href='hotels.html'">Đặt phòng</button>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>⌄</span>
         </div>
     </section>
 
-    <!-- Attractions Section -->
-    <section class="attractions">
+    <!-- About Section -->
+    <section id="about" class="about">
         <div class="container">
-            
-            <!-- Japanese Covered Bridge -->
-            <div class="attraction-detail">
-                <div class="attraction-image">
-                    <div class="image-placeholder">🌉 Japanese Covered Bridge (Chùa Cầu)</div>
+            <div class="section-header">
+                <h2>Về Khu Sinh Thái Nhà Tôi</h2>
+                <p>Điểm đến lý tưởng cho nghỉ dưỡng, teambuilding và du lịch sinh thái</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-item">
+                    <div class="about-icon">�️</div>
+                    <h3>Không gian xanh</h3>
+                    <p>Hòa mình vào thiên nhiên với không gian xanh mát, núi rừng hùng vĩ và không khí trong lành.</p>
                 </div>
-                <div class="attraction-content">
-                    <h2>Japanese Covered Bridge (Chùa Cầu)</h2>
-                    <div class="attraction-meta">
-                        <span class="location">📍 Nguyen Thi Minh Khai Street</span>
-                        <span class="rating">⭐ 4.7/5 (2,340 reviews)</span>
+                <div class="about-item">
+                    <div class="about-icon">�</div>
+                    <h3>Phòng nghỉ hiện đại</h3>
+                    <p>Bungalow, nhà nghỉ gỗ và phòng khách sạn với đầy đủ tiện nghi, điều hòa, nước nóng lạnh.</p>
+                </div>
+                <div class="about-item">
+                    <div class="about-icon">🍽️</div>
+                    <h3>Nhà hàng phục vụ</h3>
+                    <p>Thực đơn đa dạng với các món ăn đặc sản vùng núi và ẩm thực Việt Nam truyền thống.</p>
+                </div>
+                <div class="about-item">
+                    <div class="about-icon">🎯</div>
+                    <h3>Hoạt động vui chơi</h3>
+                    <p>Teambuilding, cắm trại, BBQ, câu cá, tắm suối và nhiều hoạt động ngoài trời hấp dẫn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="highlights">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tiện Nghi & Dịch Vụ</h2>
+                <p>Đầy đủ tiện nghi hiện đại cho kỳ nghỉ hoàn hảo của bạn</p>
+            </div>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/2.jpg" alt="Bungalow gỗ" style="width: 100%; height: 250px; object-fit: cover;">
                     </div>
-                    <p>
-                        The iconic Japanese Covered Bridge, built in the 16th century, is Hoi An's most famous landmark. 
-                        This beautiful wooden bridge connects the Japanese and Chinese quarters of the ancient town. 
-                        Legend says it was built to kill a monster whose head, heart, and tail lay across Vietnam, 
-                        India, and Japan respectively.
-                    </p>
-                    <div class="attraction-highlights">
-                        <h4>Highlights:</h4>
-                        <ul>
-                            <li>🏛️ 400-year-old architectural masterpiece</li>
-                            <li>🎨 Beautiful carved decorations and statues</li>
-                            <li>📸 Perfect spot for photography</li>
-                            <li>🌙 Magical atmosphere during full moon festivals</li>
-                        </ul>
+                    <div class="card-content">
+                        <h3>🏡 Bungalow & Nhà Gỗ</h3>
+                        <p>Phòng nghỉ phong cách bungalow và nhà gỗ ấm cúng, hòa mình vào thiên nhiên với đầy đủ tiện nghi hiện đại.</p>
                     </div>
-                    <div class="visit-info">
-                        <p><strong>Opening Hours:</strong> 24/7 (Free to cross)</p>
-                        <p><strong>Best Time to Visit:</strong> Early morning or evening for fewer crowds</p>
-                        <p><strong>Entry Fee:</strong> Free (included in Old Town ticket)</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/3.jpg" alt="Khu vực BBQ" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🔥 Khu BBQ & Dã ngoại</h3>
+                        <p>Không gian nướng BBQ rộng rãi, phục vụ tiệc ngoài trời, teambuilding và các sự kiện tập thể.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/4.jpg" alt="Hồ câu cá" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🎣 Hồ Câu Cá & Suối</h3>
+                        <p>Hồ câu cá sinh thái và suối tự nhiên trong lành, mang đến trải nghiệm thư giãn tuyệt vời.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/5.jpg" alt="Nhà hàng" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🍽️ Nhà Hàng Sinh Thái</h3>
+                        <p>Phục vụ các món ăn đặc sản vùng núi, ẩm thực Việt và thực đơn phong phú cho mọi khách hàng.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/6.jpg" alt="Khu vui chơi" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🎪 Khu Vui Chơi Trẻ Em</h3>
+                        <p>Sân chơi an toàn cho trẻ em với nhiều trò chơi ngoài trời và hoạt động giải trí thú vị.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/7.jpg" alt="Không gian xanh" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🌳 Vườn Sinh Thái</h3>
+                        <p>Không gian xanh mát với vườn cây ăn trái, rau sạch và các loại thảo mộc tự nhiên.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Old Town -->
-            <div class="attraction-detail">
-                <div class="attraction-image">
-                    <div class="image-placeholder">🏮 Hoi An Ancient Town</div>
-                </div>
-                <div class="attraction-content">
-                    <h2>Hoi An Ancient Town</h2>
-                    <div class="attraction-meta">
-                        <span class="location">📍 Central Hoi An</span>
-                        <span class="rating">⭐ 4.8/5 (5,678 reviews)</span>
-                    </div>
-                    <p>
-                        A UNESCO World Heritage Site, Hoi An Ancient Town is a remarkably well-preserved example 
-                        of a Southeast Asian trading port from the 15th to 19th centuries. Its buildings and 
-                        street plan reflect the influences of indigenous and foreign cultures over time.
-                    </p>
-                    <div class="attraction-highlights">
-                        <h4>Highlights:</h4>
-                        <ul>
-                            <li>🏛️ 844 officially recognized historic buildings</li>
-                            <li>🏮 Colorful lanterns lining the streets</li>
-                            <li>🎭 Traditional craft workshops</li>
-                            <li>🍜 Authentic local restaurants and cafes</li>
-                        </ul>
-                    </div>
-                    <div class="visit-info">
-                        <p><strong>Opening Hours:</strong> 24/7</p>
-                        <p><strong>Ticket:</strong> Old Town Ticket required (120,000 VND)</p>
-                        <p><strong>Includes:</strong> Entry to 5 heritage sites of your choice</p>
-                    </div>
-                </div>
+    <!-- Gallery Section -->
+    <section class="highlights" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>🖼️ Hình Ảnh Khu Sinh Thái</h2>
+                <p>Khám phá vẻ đẹp của Nhà Tôi - Hòa Bình qua ảnh</p>
             </div>
-
-            <!-- Thu Bon River -->
-            <div class="attraction-detail">
-                <div class="attraction-image">
-                    <div class="image-placeholder">🛶 Thu Bon River</div>
-                </div>
-                <div class="attraction-content">
-                    <h2>Thu Bon River</h2>
-                    <div class="attraction-meta">
-                        <span class="location">📍 Flows through Hoi An</span>
-                        <span class="rating">⭐ 4.6/5 (1,892 reviews)</span>
-                    </div>
-                    <p>
-                        The Thu Bon River has been the lifeblood of Hoi An for centuries. Take a peaceful boat 
-                        ride to experience the town from a different perspective, especially beautiful during 
-                        sunset when the ancient buildings reflect in the calm waters.
-                    </p>
-                    <div class="attraction-highlights">
-                        <h4>Activities:</h4>
-                        <ul>
-                            <li>🛶 Traditional basket boat tours</li>
-                            <li>🌅 Sunset river cruises</li>
-                            <li>🏮 Evening lantern boat rides</li>
-                            <li>🎣 Fishing experiences with locals</li>
-                        </ul>
-                    </div>
-                    <div class="visit-info">
-                        <p><strong>Best Time:</strong> Late afternoon for sunset views</p>
-                        <p><strong>Boat Tours:</strong> 150,000 - 300,000 VND per person</p>
-                        <p><strong>Duration:</strong> 1-2 hours depending on tour</p>
-                    </div>
-                </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <img src="assets/images/8.jpg" alt="Khu sinh thái 1" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/9.jpg" alt="Khu sinh thái 2" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/10.jpg" alt="Khu sinh thái 3" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/11.jpg" alt="Khu sinh thái 4" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/12.jpg" alt="Khu sinh thái 5" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/13.jpg" alt="Khu sinh thái 6" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
             </div>
+        </div>
+    </section>
 
-            <!-- An Bang Beach -->
-            <div class="attraction-detail">
-                <div class="attraction-image">
-                    <div class="image-placeholder">🏖️ An Bang Beach</div>
-                </div>
-                <div class="attraction-content">
-                    <h2>An Bang Beach</h2>
-                    <div class="attraction-meta">
-                        <span class="location">📍 4km from Hoi An center</span>
-                        <span class="rating">⭐ 4.5/5 (967 reviews)</span>
-                    </div>
-                    <p>
-                        Just a short bike ride from Hoi An's ancient town, An Bang Beach offers pristine white 
-                        sand and clear blue waters. This peaceful beach is perfect for relaxing after exploring 
-                        the cultural sites, with fewer crowds than other Vietnamese beaches.
-                    </p>
-                    <div class="attraction-highlights">
-                        <h4>Features:</h4>
-                        <ul>
-                            <li>🏖️ Clean, white sandy beach</li>
-                            <li>🏄‍♂️ Surfing and water sports</li>
-                            <li>🍹 Beachside bars and restaurants</li>
-                            <li>🚲 Easy bike ride from town</li>
-                        </ul>
-                    </div>
-                    <div class="visit-info">
-                        <p><strong>Distance:</strong> 4km from Ancient Town</p>
-                        <p><strong>Transportation:</strong> Bicycle (20 mins) or motorbike (10 mins)</p>
-                        <p><strong>Best Time:</strong> Morning or late afternoon</p>
-                    </div>
-                </div>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Sẵn sàng trải nghiệm thiên nhiên?</h2>
+                <p>Đặt phòng tại Khu Sinh Thái Nhà Tôi - Hòa Bình và bắt đầu hành trình nghỉ dưỡng tuyệt vời</p>
+                <button class="btn btn-primary" onclick="window.location.href='hotels.html'">Đặt phòng ngay</button>
             </div>
-
-            <!-- My Son Sanctuary -->
-            <div class="attraction-detail">
-                <div class="attraction-image">
-                    <div class="image-placeholder">🏛️ My Son Sanctuary</div>
-                </div>
-                <div class="attraction-content">
-                    <h2>My Son Sanctuary</h2>
-                    <div class="attraction-meta">
-                        <span class="location">📍 60km from Hoi An</span>
-                        <span class="rating">⭐ 4.4/5 (1,234 reviews)</span>
-                    </div>
-                    <p>
-                        My Son Sanctuary is a cluster of abandoned and partially ruined Hindu temples constructed 
-                        between the 4th and 14th centuries by the Champa civilization. This UNESCO World Heritage 
-                        Site offers insight into the ancient Cham culture and their impressive architectural skills.
-                    </p>
-                    <div class="attraction-highlights">
-                        <h4>Highlights:</h4>
-                        <ul>
-                            <li>🏛️ Ancient Cham temple ruins (4th-14th century)</li>
-                            <li>🎭 Traditional Cham cultural performances</li>
-                            <li>🌿 Beautiful mountain and forest setting</li>
-                            <li>📚 Museum with Cham artifacts</li>
-                        </ul>
-                    </div>
-                    <div class="visit-info">
-                        <p><strong>Distance:</strong> 60km (1.5-hour drive) from Hoi An</p>
-                        <p><strong>Entry Fee:</strong> 150,000 VND</p>
-                        <p><strong>Best Time:</strong> Early morning (cooler weather)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tra Que Vegetable Village -->
-            <div class="attraction-detail">
-                <div class="attraction-image">
-                    <div class="image-placeholder">🥬 Tra Que Village</div>
-                </div>
-                <div class="attraction-content">
-                    <h2>Tra Que Vegetable Village</h2>
-                    <div class="attraction-meta">
-                        <span class="location">📍 3km from Hoi An center</span>
-                        <span class="rating">⭐ 4.3/5 (578 reviews)</span>
-                    </div>
-                    <p>
-                        Experience authentic Vietnamese rural life at Tra Que Village, famous for its organic 
-                        vegetables and herbs. Join a cooking class, work alongside local farmers, or simply 
-                        bike through the peaceful countryside to see traditional farming methods.
-                    </p>
-                    <div class="attraction-highlights">
-                        <h4>Activities:</h4>
-                        <ul>
-                            <li>🚲 Scenic bicycle tours through farms</li>
-                            <li>👨‍🌾 Hands-on farming experience</li>
-                            <li>🍳 Cooking classes with fresh ingredients</li>
-                            <li>🥗 Farm-to-table dining experiences</li>
-                        </ul>
-                    </div>
-                    <div class="visit-info">
-                        <p><strong>Distance:</strong> 3km (15-minute bike ride)</p>
-                        <p><strong>Tours:</strong> Half-day or full-day options available</p>
-                        <p><strong>Price:</strong> 200,000 - 400,000 VND per person</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -254,26 +190,26 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Hoi An Tourism</h3>
-                    <p>Your gateway to experiencing the authentic beauty of Vietnam's ancient town.</p>
+                    <h3>🏡 Nhà Tôi - Hòa Bình</h3>
+                    <p>Khu Du Lịch Sinh Thái - Nghỉ dưỡng và Teambuilding giữa núi rừng Hòa Bình.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Liên kết nhanh</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="hotels.html">Hotels</a></li>
-                        <li><a href="attractions.html">Attractions</a></li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="attractions.html">Điểm đến</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p>📧 info@hoiantourism.vn</p>
-                    <p>📞 +84 235 123 456</p>
-                    <p>📍 Hoi An, Quang Nam, Vietnam</p>
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 +84 987 654 321</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Hoi An Tourism. All rights reserved.</p>
+                <p>&copy; 2024 Du lịch Hòa Bình. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -285,30 +221,30 @@
             
             <!-- Login Form -->
             <div id="loginForm" class="auth-form">
-                <h2>Login</h2>
+                <h2>Đăng nhập</h2>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label for="loginEmail">Email:</label>
                         <input type="email" id="loginEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">Password:</label>
+                        <label for="loginPassword">Mật khẩu:</label>
                         <input type="password" id="loginPassword" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 </form>
                 <p class="auth-switch">
-                    Don't have an account? 
-                    <a href="#" onclick="showRegisterForm()">Register here</a>
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterForm()">Đăng ký tại đây</a>
                 </p>
             </div>
 
             <!-- Register Form -->
             <div id="registerForm" class="auth-form" style="display: none;">
-                <h2>Register</h2>
+                <h2>Đăng ký</h2>
                 <form onsubmit="handleRegister(event)">
                     <div class="form-group">
-                        <label for="registerUsername">Username:</label>
+                        <label for="registerUsername">Tên người dùng:</label>
                         <input type="text" id="registerUsername" name="username" required>
                     </div>
                     <div class="form-group">
@@ -316,14 +252,14 @@
                         <input type="email" id="registerEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="registerPassword">Password:</label>
+                        <label for="registerPassword">Mật khẩu:</label>
                         <input type="password" id="registerPassword" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
                 </form>
                 <p class="auth-switch">
-                    Already have an account? 
-                    <a href="#" onclick="showLoginForm()">Login here</a>
+                    Đã có tài khoản? 
+                    <a href="#" onclick="showLoginForm()">Đăng nhập tại đây</a>
                 </p>
             </div>
         </div>
@@ -334,18 +270,19 @@
         <div class="modal-content">
             <span class="close" onclick="closeDashboardModal()">&times;</span>
             <div id="userDashboard">
-                <h2>Welcome, <span id="username"></span>!</h2>
+                <h2>Xin chào, <span id="username"></span>!</h2>
                 <div class="dashboard-section">
-                    <h3>Your Bookings</h3>
+                    <h3>Đặt phòng của bạn</h3>
                     <div id="userBookings">
                         <!-- Bookings will be loaded here -->
                     </div>
                 </div>
-                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
             </div>
         </div>
     </div>
 
+    <script src="js/placeholder.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
 </body>

@@ -1,0 +1,1184 @@
+# BÁO CÁO DỰ ÁN WEBSITE DU LỊCH SINH THÁI NHÀ TÔI - HÒA BÌNH
+
+---
+
+## 📋 MỤC LỤC
+
+1. [Tổng Quan Dự Án](#1-tổng-quan-dự-án)
+2. [Công Nghệ Sử Dụng](#2-công-nghệ-sử-dụng)
+3. [Kiến Trúc Hệ Thống](#3-kiến-trúc-hệ-thống)
+4. [Chức Năng Chi Tiết](#4-chức-năng-chi-tiết)
+5. [Cơ Sở Dữ Liệu](#5-cơ-sở-dữ-liệu)
+6. [Hướng Dẫn Cài Đặt & Sử Dụng](#6-hướng-dẫn-cài-đặt--sử-dụng)
+7. [Demo & Deployment](#7-demo--deployment)
+8. [Tính Năng Nổi Bật](#8-tính-năng-nổi-bật)
+9. [Kết Luận & Phát Triển Tương Lai](#9-kết-luận--phát-triển-tương-lai)
+
+---
+
+## 1. TỔNG QUAN DỰ ÁN
+
+### 1.1. Giới Thiệu
+**Website Du Lịch Sinh Thái Nhà Tôi - Hòa Bình** là một nền tảng web toàn diện cho khu du lịch sinh thái tại Hòa Bình, Việt Nam. Website cung cấp dịch vụ đặt phòng trực tuyến, giới thiệu nhà hàng, tin tức khuyến mại và quản lý thông tin khách hàng.
+
+### 1.2. Mục Tiêu
+- ✅ Tạo trải nghiệm đặt phòng trực tuyến dễ dàng và thuận tiện
+- ✅ Giới thiệu đầy đủ thông tin về khu sinh thái, nhà hàng và dịch vụ
+- ✅ Quản lý đặt phòng và gửi email xác nhận tự động
+- ✅ Xây dựng hệ thống xác thực người dùng an toàn
+- ✅ Cung cấp giao diện thân thiện, responsive trên mọi thiết bị
+
+### 1.3. Đối Tượng Sử Dụng
+- **Khách du lịch:** Đặt phòng, xem thông tin dịch vụ
+- **Doanh nghiệp:** Tổ chức teambuilding, sự kiện
+- **Admin:** Quản lý đặt phòng, khách hàng (tương lai)
+
+### 1.4. Thông Tin Dự Án
+- **Địa chỉ:** Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình
+- **Hotline:** 0964 233 100
+- **Email:** nhatoihoabinh@gmail.com
+- **URL Demo:** https://unilateral-dawdlingly-becki.ngrok-free.dev
+
+---
+
+## 2. CÔNG NGHỆ SỬ DỤNG
+
+### 2.1. Frontend Technologies
+
+#### 2.1.1. HTML5
+- **Mục đích:** Cấu trúc trang web semantic
+- **Đặc điểm:**
+  - Sử dụng các thẻ semantic: `<nav>`, `<section>`, `<article>`, `<footer>`
+  - Form validation với HTML5 attributes
+  - Meta tags tối ưu SEO
+
+#### 2.1.2. CSS3
+- **Mục đích:** Styling và responsive design
+- **Kỹ thuật sử dụng:**
+  - **CSS Variables:** Quản lý màu sắc thống nhất
+    ```css
+    :root {
+        --primary-blue: #4A90E2;
+        --primary-yellow: #F5B041;
+        --white: #FFFFFF;
+    }
+    ```
+  - **Flexbox & CSS Grid:** Layout responsive
+  - **Transitions & Animations:** Hiệu ứng mượt mà
+  - **Media Queries:** Responsive breakpoints (1200px, 768px)
+  - **Gradient Backgrounds:** Tạo hiệu ứng màu đẹp mắt
+
+#### 2.1.3. JavaScript (Vanilla)
+- **Mục đích:** Xử lý logic client-side
+- **Chức năng chính:**
+  - **Authentication:** Đăng nhập, đăng ký, JWT token management
+  - **Form Validation:** Kiểm tra dữ liệu người dùng
+  - **API Integration:** Gọi REST API đến backend
+  - **DOM Manipulation:** Cập nhật UI động
+  - **Event Handling:** Xử lý tương tác người dùng
+
+**Files JavaScript chính:**
+```
+frontend/js/
+├── auth.js          # Xác thực người dùng
+├── main.js          # Chức năng chung (navbar, modal)
+├── placeholder.js   # Xử lý hình ảnh placeholder
+└── pricing.js       # Tính toán giá phòng động
+```
+
+### 2.2. Backend Technologies
+
+#### 2.2.1. Node.js
+- **Version:** v14+
+- **Mục đích:** Runtime environment cho JavaScript server-side
+- **Ưu điểm:**
+  - Non-blocking I/O
+  - NPM ecosystem phong phú
+  - Hiệu suất cao với V8 engine
+
+#### 2.2.2. Express.js v4.18.2
+- **Mục đích:** Web framework cho Node.js
+- **Chức năng:**
+  - Routing HTTP requests
+  - Middleware pipeline
+  - Static file serving
+  - RESTful API endpoints
+
+#### 2.2.3. SQLite3 v5.1.6
+- **Mục đích:** Cơ sở dữ liệu quan hệ nhẹ
+- **Ưu điểm:**
+  - Không cần server riêng
+  - Dễ dàng backup (1 file .db)
+  - Phù hợp với quy mô nhỏ-trung bình
+- **Tables:** users, bookings
+
+#### 2.2.4. JWT (JSON Web Token) v9.0.2
+- **Mục đích:** Xác thực & phân quyền
+- **Cơ chế:**
+  ```javascript
+  // Tạo token khi login
+  const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '24h' });
+  
+  // Verify token trong middleware
+  jwt.verify(token, JWT_SECRET);
+  ```
+
+#### 2.2.5. BCrypt v2.4.3
+- **Mục đích:** Mã hóa mật khẩu
+- **Cơ chế:**
+  ```javascript
+  // Hash password
+  const hashedPassword = await bcrypt.hash(password, 10);
+  
+  // Compare password
+  const isValid = await bcrypt.compare(password, hashedPassword);
+  ```
+
+#### 2.2.6. Nodemailer v6.9.7
+- **Mục đích:** Gửi email tự động
+- **Chức năng:**
+  - Email xác nhận đặt phòng cho khách
+  - Email thông báo đặt phòng cho admin
+  - SMTP: Gmail với App Password
+
+#### 2.2.7. Các Dependencies Khác
+- **CORS v2.8.5:** Cross-Origin Resource Sharing
+- **body-parser v1.20.2:** Parse request body
+- **dotenv v16.3.1:** Environment variables
+- **nodemon v3.0.1:** Auto-restart server (dev)
+
+---
+
+## 3. KIẾN TRÚC Hệ THỐNG
+
+### 3.1. Mô Hình Tổng Quát
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        CLIENT SIDE                           │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │   Browser (Chrome, Firefox, Safari, Edge)            │   │
+│  │   ├── HTML5 (Structure)                              │   │
+│  │   ├── CSS3 (Styling)                                 │   │
+│  │   └── JavaScript (Logic)                             │   │
+│  └──────────────────────────────────────────────────────┘   │
+└────────────────────────┬────────────────────────────────────┘
+                         │ HTTP/HTTPS
+                         │ REST API
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      SERVER SIDE                             │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │   Node.js + Express.js (Port 3000)                   │   │
+│  │   ├── Routing                                        │   │
+│  │   ├── Authentication (JWT)                           │   │
+│  │   ├── API Endpoints                                  │   │
+│  │   └── Email Service (Nodemailer)                     │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                         │                                    │
+│                         ▼                                    │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │   SQLite Database (hoi_an_tourism.db)                │   │
+│  │   ├── users (Authentication)                         │   │
+│  │   └── bookings (Reservations)                        │   │
+│  └──────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    DEPLOYMENT                                │
+│   Ngrok Tunnel: Public URL → localhost:3000                 │
+│   URL: https://unilateral-dawdlingly-becki.ngrok-free.dev   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 3.2. Luồng Dữ Liệu (Data Flow)
+
+#### 3.2.1. Đăng Ký Người Dùng
+```
+User Input (Form) 
+    → Frontend Validation 
+    → POST /api/register 
+    → Backend Validation 
+    → Hash Password (BCrypt) 
+    → Save to Database 
+    → Return Success/Error
+```
+
+#### 3.2.2. Đăng Nhập
+```
+User Credentials 
+    → POST /api/login 
+    → Verify Password (BCrypt) 
+    → Generate JWT Token 
+    → Store Token (LocalStorage) 
+    → Update UI (Welcome User)
+```
+
+#### 3.2.3. Đặt Phòng
+```
+Booking Form 
+    → Calculate Price (pricing.js) 
+    → POST /api/bookings 
+    → Verify JWT Token 
+    → Save Booking 
+    → Send Confirmation Emails (Nodemailer)
+        ├── Email to Customer
+        └── Email to Admin
+    → Return Booking Details
+```
+
+### 3.3. Cấu Trúc Thư Mục
+
+```
+web_du_lich/
+├── hoi-an-tourism/
+│   ├── backend/
+│   │   ├── routes/
+│   │   │   └── booking.js          # Booking API routes
+│   │   ├── server.js                # Main server file
+│   │   ├── emailService.js          # Email configuration
+│   │   ├── package.json             # Dependencies
+│   │   ├── .env                     # Environment variables (hidden)
+│   │   └── hoi_an_tourism.db        # SQLite database
+│   │
+│   └── frontend/
+│       ├── assets/
+│       │   └── images/              # Images (1.png - 20.png, main.jpg)
+│       ├── css/
+│       │   └── style.css            # Main stylesheet
+│       ├── js/
+│       │   ├── auth.js              # Authentication logic
+│       │   ├── main.js              # General functions
+│       │   ├── placeholder.js       # Image handling
+│       │   └── pricing.js           # Price calculation
+│       ├── index.html               # Homepage
+│       ├── hotels.html              # Booking page
+│       ├── restaurant.html          # Restaurant page
+│       ├── news.html                # News & Promotions
+│       ├── about-us.html            # About Us page
+│       ├── news-detail-1.html       # News article 1
+│       ├── news-detail-2.html       # News article 2
+│       └── news-detail-3.html       # News article 3
+│
+└── [Documentation files]
+```
+
+---
+
+## 4. CHỨC NĂNG CHI TIẾT
+
+### 4.1. Trang Chủ (index.html)
+
+#### 4.1.1. Hero Section
+- **Mô tả:** Phần banner toàn màn hình với hình ảnh nền ấn tượng
+- **Công nghệ:** 
+  - CSS: `min-height: 100vh`, gradient overlay
+  - JavaScript: Scroll indicator animation
+- **Nội dung:**
+  - Tiêu đề chính
+  - Mô tả ngắn gọn
+  - 2 CTA buttons: "Khám phá ngay" và "Đặt phòng"
+
+#### 4.1.2. Giới Thiệu Section
+- **Mô tả:** Thông tin về khu sinh thái
+- **Layout:** 2 cột (text + image)
+- **Responsive:** Mobile chuyển thành 1 cột
+
+#### 4.1.3. Tiện Nghi Section
+- **Mô tả:** 6 tiện nghi chính với icons
+- **Layout:** CSS Grid 3x2
+- **Hiệu ứng:** Hover scale transform
+
+#### 4.1.4. Gallery Section
+- **Mô tả:** Bộ sưu tập hình ảnh (6 ảnh)
+- **Layout:** CSS Grid responsive
+- **Hiệu ứng:** 
+  - Image overlay on hover
+  - Zoom effect
+  - Box shadow
+
+#### 4.1.5. FAQ Section
+- **Mô tả:** 6 câu hỏi thường gặp
+- **Công nghệ:** Accordion với JavaScript
+- **Chức năng:**
+  ```javascript
+  function toggleFAQ(button) {
+      const answer = button.querySelector('.faq-answer');
+      answer.style.maxHeight = answer.style.maxHeight ? '0' : answer.scrollHeight + 'px';
+  }
+  ```
+
+### 4.2. Đặt Phòng (hotels.html)
+
+#### 4.2.1. Form Đặt Phòng
+**Fields:**
+- Họ và tên (required)
+- Email (required, validation)
+- Số điện thoại (required, pattern)
+- Ngày nhận phòng (required, date picker)
+- Ngày trả phòng (required, validation > checkin)
+- Số phòng (number, min=1, max=10)
+- Loại phòng (select: Standard/Deluxe/Suite/Family)
+- Ghi chú đặc biệt (textarea, optional)
+
+**Validation:**
+```javascript
+// Frontend validation
+if (!name || !email || !phone || !checkin || !checkout) {
+    alert('Vui lòng điền đầy đủ thông tin');
+    return;
+}
+
+// Date validation
+const checkinDate = new Date(checkin);
+const checkoutDate = new Date(checkout);
+if (checkoutDate <= checkinDate) {
+    alert('Ngày trả phòng phải sau ngày nhận phòng');
+    return;
+}
+```
+
+#### 4.2.2. Tính Giá Động (pricing.js)
+**Logic:**
+```javascript
+// Giá theo loại phòng
+const basePrices = {
+    'standard': 500000,
+    'deluxe': 800000,
+    'suite': 1200000,
+    'family': 1500000
+};
+
+// Tính số đêm
+const nights = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
+
+// Tổng giá
+const totalPrice = basePrice * numberOfRooms * nights;
+```
+
+#### 4.2.3. Bảng Giá & Menu
+**4 Menu Set cho nhóm:**
+- Menu 1: 1,150,000 VNĐ (15 món)
+- Menu 2: 1,200,000 VNĐ (9 món)
+- Menu 3: 1,300,000 VNĐ (16 món)
+- Menu 4: 1,400,000 VNĐ (12 món)
+
+### 4.3. Nhà Hàng (restaurant.html)
+
+#### 4.3.1. Hero Section
+- Background image với overlay
+- Tiêu đề và mô tả dịch vụ
+- Thông tin phục vụ theo bàn/tiệc
+
+#### 4.3.2. Menu Sections
+**4 Menu Chi Tiết:**
+- Hiển thị theo tabs/sections
+- Danh sách món ăn với giá
+- Thông tin số lượng người/bàn
+- Nút "Đặt phòng ngay" redirect sang hotels.html
+
+#### 4.3.3. Thông Tin Bổ Sung
+- Giờ phục vụ
+- Đặc sản địa phương
+- Hình ảnh món ăn
+
+### 4.4. Tin Tức & Khuyến Mại (news.html)
+
+#### 4.4.1. Tab System
+**JavaScript Tab Switching:**
+```javascript
+function showTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show selected tab
+    document.getElementById(tabName).classList.add('active');
+}
+```
+
+#### 4.4.2. Tab Ưu Đãi (Promotions)
+**3 Khuyến Mại:**
+- Layout: Vertical cards (image left, content right)
+- Mỗi card có nút "Đặt phòng ngay"
+- Hiển thị: Badge (Hot/Doanh Nghiệp/Combo), Title, Date, Description
+
+#### 4.4.3. Tab Tin Tức (News)
+**3 Bài Viết:**
+- Layout: Vertical cards (image left, content right)
+- Click vào card → Chuyển đến trang chi tiết
+- Hiển thị: Title, Date, Excerpt
+
+#### 4.4.4. Trang Chi Tiết Tin Tức
+**3 Files riêng:**
+- `news-detail-1.html`: Khu Sinh Thái Nhà Tôi
+- `news-detail-2.html`: Teambuilding Sáng Tạo
+- `news-detail-3.html`: Ẩm Thực Đặc Sản
+
+**Cấu trúc:**
+- Hero section với background image
+- Article metadata (date, author)
+- Full article content với headings, lists, images
+- Back button
+
+### 4.5. Về Chúng Tôi (about-us.html)
+
+#### 4.5.1. Hero Section
+- Background: main.jpg với overlay
+- Title + Description
+
+#### 4.5.2. Mission Section
+**6 Mission Cards:**
+- Layout: CSS Grid 3x2
+- Mỗi card:
+  - Icon emoji (❤️ 🤝 🌱 ✨ 🏡 🎯)
+  - Title màu trắng trên gradient background
+  - Description
+- Hover effect: Transform scale + box-shadow
+
+```css
+.mission-card {
+    background: white;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+.mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+```
+
+#### 4.5.3. Commitment Section
+- Danh sách các cam kết
+- CTA buttons: "Đặt Phòng Ngay" + "Xem Ưu Đãi"
+
+### 4.6. Authentication System
+
+#### 4.6.1. Modal UI
+**2 Forms:**
+- Login Form (default visible)
+- Register Form (hidden, toggle)
+
+**HTML Structure:**
+```html
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <div id="loginForm">...</div>
+        <div id="registerForm" style="display:none">...</div>
+    </div>
+</div>
+```
+
+#### 4.6.2. Authentication Flow
+
+**Register:**
+```javascript
+async function handleRegister(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    
+    const response = await fetch(`${API_BASE_URL}/api/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: formData.get('username'),
+            email: formData.get('email'),
+            password: formData.get('password')
+        })
+    });
+    
+    if (response.ok) {
+        showLoginForm();
+        alert('Đăng ký thành công! Vui lòng đăng nhập.');
+    }
+}
+```
+
+**Login:**
+```javascript
+async function handleLogin(event) {
+    event.preventDefault();
+    const response = await fetch(`${API_BASE_URL}/api/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+    
+    const data = await response.json();
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
+    updateAuthUI();
+}
+```
+
+**Check Auth State:**
+```javascript
+function checkAuthState() {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    
+    if (token && user) {
+        updateAuthUI();
+    }
+}
+```
+
+#### 4.6.3. Protected Routes
+**Backend Middleware:**
+```javascript
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization']?.split(' ')[1];
+    
+    if (!token) {
+        return res.status(401).json({ error: 'Access denied' });
+    }
+    
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ error: 'Invalid token' });
+        req.user = user;
+        next();
+    });
+}
+```
+
+---
+
+## 5. CƠ SỞ DỮ LIỆU
+
+### 5.1. Database Schema
+
+#### 5.1.1. Users Table
+```sql
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+)
+```
+
+**Columns:**
+- `id`: Primary key, auto-increment
+- `username`: Tên người dùng (unique)
+- `email`: Email đăng ký (unique)
+- `password`: Mật khẩu đã hash (BCrypt)
+- `created_at`: Thời gian tạo tài khoản
+
+#### 5.1.2. Bookings Table
+```sql
+CREATE TABLE bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    checkin_date DATE NOT NULL,
+    checkout_date DATE NOT NULL,
+    num_rooms INTEGER NOT NULL,
+    room_type TEXT NOT NULL,
+    total_price REAL NOT NULL,
+    special_requests TEXT,
+    status TEXT DEFAULT 'pending',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)
+```
+
+**Columns:**
+- `id`: Primary key
+- `user_id`: Foreign key → users.id
+- `name`: Tên khách hàng
+- `email`: Email liên hệ
+- `phone`: Số điện thoại
+- `checkin_date`: Ngày nhận phòng
+- `checkout_date`: Ngày trả phòng
+- `num_rooms`: Số lượng phòng
+- `room_type`: Loại phòng (standard/deluxe/suite/family)
+- `total_price`: Tổng giá tiền
+- `special_requests`: Yêu cầu đặc biệt
+- `status`: Trạng thái (pending/confirmed/cancelled)
+- `created_at`: Thời gian đặt phòng
+
+### 5.2. Database Operations
+
+#### 5.2.1. Create User
+```javascript
+db.run(
+    'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+    [username, email, hashedPassword],
+    function(err) {
+        if (err) {
+            if (err.message.includes('UNIQUE')) {
+                return res.status(400).json({ error: 'Email hoặc username đã tồn tại' });
+            }
+        }
+        res.status(201).json({ message: 'Đăng ký thành công' });
+    }
+);
+```
+
+#### 5.2.2. Create Booking
+```javascript
+db.run(
+    `INSERT INTO bookings (user_id, name, email, phone, checkin_date, checkout_date, 
+     num_rooms, room_type, total_price, special_requests) 
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [userId, name, email, phone, checkin, checkout, numRooms, roomType, totalPrice, specialRequests],
+    function(err) {
+        if (err) {
+            return res.status(500).json({ error: 'Lỗi khi tạo đặt phòng' });
+        }
+        
+        // Send confirmation emails
+        await sendBookingEmails(bookingData);
+        
+        res.status(201).json({ 
+            message: 'Đặt phòng thành công',
+            bookingId: this.lastID 
+        });
+    }
+);
+```
+
+#### 5.2.3. Get User Bookings
+```javascript
+db.all(
+    'SELECT * FROM bookings WHERE user_id = ? ORDER BY created_at DESC',
+    [userId],
+    (err, bookings) => {
+        if (err) {
+            return res.status(500).json({ error: 'Lỗi khi lấy danh sách đặt phòng' });
+        }
+        res.json(bookings);
+    }
+);
+```
+
+---
+
+## 6. HƯỚNG DẪN CÀI ĐẶT & SỬ DỤNG
+
+### 6.1. Yêu Cầu Hệ Thống
+
+**Phần Mềm Cần Thiết:**
+- Node.js v14 trở lên
+- npm hoặc yarn
+- SQLite3
+- Ngrok (cho deployment demo)
+- Git (optional)
+
+**Hệ Điều Hành:**
+- Windows 10/11
+- macOS 10.14+
+- Linux (Ubuntu 18.04+)
+
+### 6.2. Cài Đặt Node.js Dependencies
+
+```bash
+# Navigate to backend folder
+cd hoi-an-tourism/backend
+
+# Install dependencies
+npm install
+
+# Installed packages:
+# - express@4.18.2
+# - bcryptjs@2.4.3
+# - jsonwebtoken@9.0.2
+# - sqlite3@5.1.6
+# - cors@2.8.5
+# - body-parser@1.20.2
+# - nodemailer@6.9.7
+# - dotenv@16.3.1
+# - nodemon@3.0.1 (dev)
+```
+
+### 6.3. Cấu Hình Environment Variables
+
+**Tạo file `.env` trong `backend/`:**
+```env
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+
+# JWT Secret
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+
+# Email Configuration (Gmail)
+EMAIL_USER=nhatoihoabinh@gmail.com
+EMAIL_PASS=your-gmail-app-password
+
+# Admin Email
+ADMIN_EMAIL=admin@nhatoihoabinh.com
+
+# Database
+DATABASE_PATH=./hoi_an_tourism.db
+```
+
+**Lấy Gmail App Password:**
+1. Vào Google Account Settings
+2. Security → 2-Step Verification (bật)
+3. App Passwords → Tạo mật khẩu ứng dụng mới
+4. Chọn "Mail" và "Other" (nhập "Nhà Tôi Website")
+5. Copy password 16 ký tự → Paste vào EMAIL_PASS
+
+### 6.4. Khởi Chạy Server
+
+```bash
+# Development mode (auto-restart)
+npm run dev
+
+# Production mode
+npm start
+
+# Output:
+# Connected to SQLite database
+# Server running on http://localhost:3000
+```
+
+### 6.5. Truy Cập Website
+
+**Local Development:**
+```
+http://localhost:3000
+http://localhost:3000/index.html
+http://localhost:3000/hotels.html
+http://localhost:3000/restaurant.html
+http://localhost:3000/news.html
+http://localhost:3000/about-us.html
+```
+
+---
+
+## 7. DEMO & DEPLOYMENT
+
+### 7.1. Deployment với Ngrok
+
+#### 7.1.1. Cài Đặt Ngrok
+```bash
+# Download từ https://ngrok.com/download
+# Hoặc dùng npm
+npm install -g ngrok
+
+# Authenticate (tạo tài khoản ngrok.com)
+ngrok authtoken YOUR_AUTH_TOKEN
+```
+
+#### 7.1.2. Chạy Ngrok Tunnel
+```bash
+# Mở tunnel đến port 3000
+ngrok http 3000
+
+# Output:
+# Session Status                online
+# Account                       your-account@email.com
+# Version                       3.x.x
+# Region                        Asia Pacific (ap)
+# Forwarding                    https://unilateral-dawdlingly-becki.ngrok-free.dev -> http://localhost:3000
+```
+
+#### 7.1.3. Update API_BASE_URL
+**Trong `frontend/js/auth.js` và `pricing.js`:**
+```javascript
+// Development
+const API_BASE_URL = 'http://localhost:3000';
+
+// Production (Ngrok)
+const API_BASE_URL = 'https://unilateral-dawdlingly-becki.ngrok-free.dev';
+```
+
+### 7.2. Demo Workflow
+
+#### 7.2.1. Scenario 1: Khách Hàng Đặt Phòng Mới
+1. **Truy cập website:** https://unilateral-dawdlingly-becki.ngrok-free.dev
+2. **Đăng ký tài khoản:**
+   - Click "Login" → "Đăng ký tại đây"
+   - Nhập: Username, Email, Password
+   - Submit → Chuyển về Login form
+3. **Đăng nhập:**
+   - Nhập Email + Password đã đăng ký
+   - Submit → Hiện "Welcome, [username]"
+4. **Đặt phòng:**
+   - Click "Đặt phòng" trên navbar
+   - Điền form đặt phòng
+   - Chọn loại phòng → Giá tự động tính
+   - Submit → Nhận email xác nhận
+
+#### 7.2.2. Scenario 2: Xem Tin Tức & Khuyến Mại
+1. Click "Tin tức & Khuyến mại"
+2. Tab "Ưu Đãi": Xem 3 chương trình khuyến mại
+3. Click nút "Đặt phòng ngay" → Redirect sang hotels.html
+4. Tab "Tin Tức": Xem 3 bài viết
+5. Click vào bài viết → Đọc nội dung chi tiết
+6. Click "Quay lại" → Về trang news.html
+
+#### 7.2.3. Scenario 3: Xem Menu Nhà Hàng
+1. Click "Nhà hàng" trên navbar
+2. Scroll xem 4 menu set với giá
+3. Click "Đặt phòng ngay" để đặt tiệc
+
+### 7.3. Testing Checklist
+
+**✅ Frontend:**
+- [ ] Responsive trên mobile/tablet/desktop
+- [ ] Navigation menu hoạt động
+- [ ] All images load correctly
+- [ ] Forms validation
+- [ ] Modal open/close
+- [ ] Tab switching (news page)
+- [ ] Links navigation
+
+**✅ Backend:**
+- [ ] Server start without errors
+- [ ] Database connection successful
+- [ ] API endpoints respond correctly
+- [ ] Authentication works (register/login)
+- [ ] JWT token validation
+- [ ] Booking creation successful
+- [ ] Email sending works
+
+**✅ Integration:**
+- [ ] Login → Get JWT → Store in localStorage
+- [ ] Booking → Verify JWT → Save DB → Send emails
+- [ ] User dashboard shows bookings
+
+---
+
+## 8. TÍNH NĂNG NỔI BẬT
+
+### 8.1. Responsive Design
+- **Breakpoints:** 1200px, 1024px, 768px
+- **Mobile-first approach**
+- **Hamburger menu trên mobile**
+- **Flexible layouts với Flexbox & Grid**
+
+### 8.2. User Experience
+
+#### 8.2.1. Navigation
+- **Sticky navbar:** Luôn hiển thị khi scroll
+- **Active state highlighting**
+- **Smooth scroll:** Khi click anchor links
+- **Logo clickable:** Về trang chủ
+
+#### 8.2.2. Visual Effects
+- **Gradient backgrounds**
+- **Hover animations:** Scale, translate, shadow
+- **Smooth transitions:** 0.3s ease
+- **Loading states:** Khi submit forms
+
+#### 8.2.3. Form UX
+- **Real-time validation**
+- **Error messages:** Rõ ràng, tiếng Việt
+- **Success feedback:** Alert + redirect
+- **Disabled state:** Khi đang submit
+
+### 8.3. Security Features
+
+#### 8.3.1. Password Security
+- BCrypt hashing với salt rounds = 10
+- Không lưu plaintext password
+- Password strength không enforce (có thể thêm)
+
+#### 8.3.2. JWT Authentication
+- Token expiration: 24 giờ
+- Stored in localStorage (có thể chuyển sang httpOnly cookie)
+- Verified trên mọi protected route
+
+#### 8.3.3. Input Validation
+- **Frontend:** HTML5 validation + JavaScript
+- **Backend:** Express validator middleware
+- **SQL Injection prevention:** Parameterized queries
+
+```javascript
+// BAD (SQL Injection vulnerable)
+db.run(`INSERT INTO users VALUES ('${username}', '${password}')`);
+
+// GOOD (Safe)
+db.run('INSERT INTO users VALUES (?, ?)', [username, password]);
+```
+
+### 8.4. Email Automation
+
+#### 8.4.1. Customer Confirmation Email
+**Template:**
+```
+Subject: ✅ Xác Nhận Đặt Phòng - Khu Sinh Thái Nhà Tôi
+
+Kính gửi [Tên Khách Hàng],
+
+Cảm ơn bạn đã đặt phòng tại Khu Sinh Thái Nhà Tôi - Hòa Bình!
+
+📋 THÔNG TIN ĐẶT PHÒNG:
+-----------------------------------
+Mã đặt phòng: #[ID]
+Tên khách hàng: [Name]
+Email: [Email]
+Số điện thoại: [Phone]
+
+📅 THỜI GIAN:
+Nhận phòng: [Check-in Date]
+Trả phòng: [Check-out Date]
+Số đêm: [Nights]
+
+🏠 CHI TIẾT PHÒNG:
+Loại phòng: [Room Type]
+Số lượng: [Number] phòng
+
+💰 TỔNG CHI PHÍ:
+[Total Price] VNĐ
+
+Nếu có thắc mắc, vui lòng liên hệ:
+📞 Hotline: 0964 233 100
+📧 Email: nhatoihoabinh@gmail.com
+
+Trân trọng,
+Khu Sinh Thái Nhà Tôi - Hòa Bình
+```
+
+#### 8.4.2. Admin Notification Email
+- Gửi tới admin@nhatoihoabinh.com
+- Cùng nội dung như customer email
+- Subject: "🔔 Đặt Phòng Mới"
+
+### 8.5. Performance Optimization
+
+#### 8.5.1. Image Optimization
+- Sử dụng định dạng .png/.jpg tối ưu
+- Placeholder.js: Xử lý lazy loading (optional)
+- CDN ready (có thể thêm)
+
+#### 8.5.2. CSS Optimization
+- Single CSS file: style.css
+- CSS variables để tránh lặp code
+- Minification có thể thêm
+
+#### 8.5.3. JavaScript Optimization
+- Modular JS files (auth, main, pricing)
+- Event delegation
+- Debounce cho các sự kiện thường xuyên
+
+---
+
+## 9. KẾT LUẬN & PHÁT TRIỂN TƯƠNG LAI
+
+### 9.1. Kết Quả Đạt Được
+
+✅ **Hoàn thành đầy đủ các tính năng:**
+- Website responsive 7+ pages
+- Hệ thống đặt phòng hoàn chỉnh
+- Authentication & Authorization
+- Email automation
+- Database management
+- RESTful API backend
+
+✅ **Công nghệ hiện đại:**
+- Node.js + Express.js
+- JWT authentication
+- SQLite database
+- Nodemailer integration
+- Ngrok deployment
+
+✅ **UX/UI chuyên nghiệp:**
+- Design thẩm mỹ, màu sắc hài hòa
+- Navigation trực quan
+- Responsive mọi thiết bị
+- Animations mượt mà
+
+### 9.2. Hạn Chế & Cải Tiến
+
+#### 9.2.1. Hạn Chế Hiện Tại
+- **Admin Dashboard:** Chưa có giao diện quản lý booking
+- **Payment Gateway:** Chưa tích hợp thanh toán online
+- **Multi-language:** Chỉ có tiếng Việt
+- **Real-time Updates:** Không có WebSocket
+- **Image Upload:** Admin không thể upload ảnh qua UI
+- **Search & Filter:** Chưa có tìm kiếm phòng theo tiêu chí
+
+#### 9.2.2. Roadmap Phát Triển
+
+**Phase 2 (Short-term):**
+- [ ] Admin Dashboard với React.js
+- [ ] Booking management (approve/cancel)
+- [ ] Customer management
+- [ ] Statistics & Analytics
+- [ ] Email templates editor
+- [ ] SMS notification (Twilio)
+
+**Phase 3 (Mid-term):**
+- [ ] Payment integration (VNPay, MoMo)
+- [ ] Real-time room availability
+- [ ] Review & Rating system
+- [ ] Loyalty program
+- [ ] Multi-language (EN, CN)
+- [ ] Mobile app (React Native)
+
+**Phase 4 (Long-term):**
+- [ ] AI Chatbot support
+- [ ] Virtual tour (360° photos)
+- [ ] Integration với OTA (Booking.com, Agoda)
+- [ ] CRM system
+- [ ] Business Intelligence Dashboard
+- [ ] Microservices architecture
+
+### 9.3. Bài Học & Kinh Nghiệm
+
+**✅ Technical Skills:**
+- Full-stack development với Node.js
+- RESTful API design patterns
+- Database modeling & SQL
+- Authentication & Security best practices
+- Email automation workflows
+- Deployment với Ngrok
+
+**✅ Soft Skills:**
+- Project planning & time management
+- Problem-solving khi debug
+- Documentation writing
+- Version control với Git
+- Testing & QA mindset
+
+### 9.4. Đánh Giá Tổng Quan
+
+**Điểm Mạnh:**
+- ⭐ Chức năng đầy đủ, hoạt động ổn định
+- ⭐ Code structure rõ ràng, dễ maintain
+- ⭐ Security được chú trọng (JWT, BCrypt, SQL injection prevention)
+- ⭐ UX/UI đẹp mắt, professional
+- ⭐ Có documentation đầy đủ
+
+**Điểm Cần Cải Thiện:**
+- 🔸 Thiếu admin panel
+- 🔸 Chưa có automated testing (Unit test, Integration test)
+- 🔸 Logging system chưa hoàn thiện
+- 🔸 Performance monitoring chưa có
+- 🔸 CI/CD pipeline chưa setup
+
+---
+
+## 10. TÀI LIỆU THAM KHẢO
+
+### 10.1. Documentation
+- [Express.js Documentation](https://expressjs.com/)
+- [Node.js API Documentation](https://nodejs.org/api/)
+- [SQLite Documentation](https://www.sqlite.org/docs.html)
+- [JWT.io](https://jwt.io/)
+- [Nodemailer Documentation](https://nodemailer.com/)
+- [Ngrok Documentation](https://ngrok.com/docs)
+
+### 10.2. Tutorials & Resources
+- MDN Web Docs (HTML, CSS, JavaScript)
+- Stack Overflow
+- GitHub Repositories
+- YouTube Tutorials
+
+### 10.3. Tools
+- VS Code (IDE)
+- Postman (API Testing)
+- Git (Version Control)
+- Chrome DevTools (Debugging)
+- SQLite Browser (Database GUI)
+
+---
+
+## PHỤ LỤC
+
+### A. API Endpoints Reference
+
+#### Authentication
+```
+POST /api/register          # Đăng ký tài khoản mới
+POST /api/login            # Đăng nhập
+```
+
+#### Bookings
+```
+POST /api/bookings         # Tạo đặt phòng mới (Protected)
+GET /api/bookings/:userId  # Lấy danh sách đặt phòng (Protected)
+```
+
+#### Static Pages
+```
+GET /                      # index.html
+GET /hotels.html           # Đặt phòng
+GET /restaurant.html       # Nhà hàng
+GET /news.html             # Tin tức
+GET /about-us.html         # Về chúng tôi
+GET /news-detail-*.html    # Chi tiết tin tức
+```
+
+### B. Environment Variables Template
+
+```env
+# .env.example
+PORT=3000
+NODE_ENV=development
+JWT_SECRET=change-this-secret-in-production
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+ADMIN_EMAIL=admin@example.com
+DATABASE_PATH=./hoi_an_tourism.db
+```
+
+### C. Database Backup Command
+
+```bash
+# Backup database
+sqlite3 hoi_an_tourism.db ".backup backup_$(date +%Y%m%d).db"
+
+# Restore database
+sqlite3 hoi_an_tourism.db ".restore backup_20250127.db"
+```
+
+### D. Useful Commands
+
+```bash
+# Start server
+npm start
+
+# Development with auto-reload
+npm run dev
+
+# Check Node version
+node --version
+
+# Check npm version
+npm --version
+
+# Install specific package
+npm install package-name
+
+# Update all packages
+npm update
+
+# Start ngrok tunnel
+ngrok http 3000
+
+# View ngrok status
+curl http://localhost:4040/api/tunnels
+```
+
+---
+
+## LIÊN HỆ & HỖ TRỢ
+
+**Website:** https://unilateral-dawdlingly-becki.ngrok-free.dev  
+**Email:** nhatoihoabinh@gmail.com  
+**Hotline:** 0964 233 100  
+**Địa chỉ:** Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình  
+
+**Developer Contact:**  
+**GitHub:** kagamikuro1024  
+**Repository:** https://github.com/kagamikuro1024/web_du_lich  
+
+---
+
+**📅 Ngày hoàn thành:** 27/10/2025  
+**📝 Phiên bản báo cáo:** 1.0  
+**✍️ Người thực hiện:** Web Development Team  
+
+---
+
+**© 2024 Khu Du Lịch Sinh Thái Nhà Tôi - Hòa Bình. All rights reserved.**

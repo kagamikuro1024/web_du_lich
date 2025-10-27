@@ -1,27 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoi An Tourism - Discover Ancient Beauty</title>
+    <title>Khu Du Lịch Sinh Thái Nhà Tôi - Hòa Bình | Nghỉ dưỡng giữa thiên nhiên</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/homepage-modern.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar navbar-transparent">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>Hoi An Tourism</h2>
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a href="hotels.html" class="nav-link">Hotels</a>
+                    <a href="index.html#about" class="nav-link">Giới thiệu</a>
                 </li>
                 <li class="nav-item">
-                    <a href="attractions.html" class="nav-link">Attractions</a>
+                    <a href="restaurant.html" class="nav-link">Nhà hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link">Đặt phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">Tin tức & Khuyến mại</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us.html" class="nav-link">Về chúng tôi</a>
                 </li>
                 <li class="nav-item" id="auth-nav">
                     <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
@@ -36,19 +48,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Hoi An</h1>
-            <p>Discover the ancient beauty and charm of Vietnam's most beloved heritage town</p>
+    <section class="hero-fullscreen">
+        <div class="hero-background" style="background-image: url('assets/images/main.jpg');"></div>
+        <div class="hero-overlay" style="opacity: 0.2;"></div>
+        <div class="hero-content-centered">
+            <h1 class="hero-title">Khu Du Lịch Sinh Thái Nhà Tôi</h1>
+            <p class="hero-subtitle">Thiên đường nghỉ dưỡng giữa núi rừng Hòa Bình - Nơi hòa mình vào thiên nhiên</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="scrollToSection('about')">Explore Now</button>
-                <button class="btn btn-secondary" onclick="window.location.href='hotels.html'">Book Your Stay</button>
+                <button class="btn btn-primary" onclick="scrollToSection('about')">Khám phá ngay</button>
+                <button class="btn btn-secondary" onclick="window.location.href='hotels.html'">Đặt phòng</button>
             </div>
         </div>
-        <div class="hero-image">
-            <div class="hero-placeholder">
-                🏮 Beautiful Hoi An Ancient Town 🏮
-            </div>
+        <div class="hero-scroll-indicator">
+            <span>⌄</span>
         </div>
     </section>
 
@@ -56,70 +68,199 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2>About Hoi An</h2>
-                <p>A UNESCO World Heritage Site that captures hearts worldwide</p>
+                <h2>Về Khu Sinh Thái Nhà Tôi</h2>
+                <p>Điểm đến lý tưởng cho nghỉ dưỡng, teambuilding và du lịch sinh thái</p>
             </div>
             <div class="about-grid">
                 <div class="about-item">
-                    <div class="about-icon">🏛️</div>
-                    <h3>Rich History</h3>
-                    <p>Explore 400+ years of preserved architecture and cultural heritage in this ancient trading port.</p>
+                    <div class="about-icon">🏞</div>
+                    <h3>Không gian xanh</h3>
+                    <p>Hòa mình vào thiên nhiên với không gian xanh mát, núi rừng hùng vĩ và không khí trong lành.</p>
                 </div>
                 <div class="about-item">
-                    <div class="about-icon">🍜</div>
-                    <h3>Amazing Cuisine</h3>
-                    <p>Taste authentic Vietnamese dishes like Cao Lau, White Rose dumplings, and fresh seafood.</p>
+                    <div class="about-icon">🏡</div>
+                    <h3>Phòng nghỉ hiện đại</h3>
+                    <p>Bungalow, nhà nghỉ gỗ và phòng khách sạn với đầy đủ tiện nghi, điều hòa, nước nóng lạnh.</p>
                 </div>
                 <div class="about-item">
-                    <div class="about-icon">🎨</div>
-                    <h3>Arts & Crafts</h3>
-                    <p>Discover local artisans creating beautiful lanterns, textiles, and traditional handicrafts.</p>
+                    <div class="about-icon">🍽</div>
+                    <h3>Nhà hàng phục vụ</h3>
+                    <p>Thực đơn đa dạng với các món ăn đặc sản vùng núi và ẩm thực Việt Nam truyền thống.</p>
                 </div>
                 <div class="about-item">
-                    <div class="about-icon">🏖️</div>
-                    <h3>Beautiful Beaches</h3>
-                    <p>Relax on pristine beaches just minutes away from the historic town center.</p>
+                    <div class="about-icon">🎯</div>
+                    <h3>Hoạt động vui chơi</h3>
+                    <p>Teambuilding, cắm trại, BBQ, câu cá, tắm suối và nhiều hoạt động ngoài trời hấp dẫn.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Highlights Section -->
+    <!-- Facilities Section -->
     <section class="highlights">
         <div class="container">
             <div class="section-header">
-                <h2>Popular Attractions</h2>
-                <p>Must-visit places in Hoi An</p>
+                <h2>Tiện Nghi & Dịch Vụ</h2>
+                <p>Đầy đủ tiện nghi hiện đại cho kỳ nghỉ hoàn hảo của bạn</p>
             </div>
             <div class="highlights-grid">
                 <div class="highlight-card">
                     <div class="card-image">
-                        <div class="image-placeholder">🌉 Japanese Covered Bridge</div>
+                        <img src="assets/images/2.jpg" alt="Bungalow gỗ" style="width: 100%; height: 250px; object-fit: cover;">
                     </div>
                     <div class="card-content">
-                        <h3>Japanese Covered Bridge</h3>
-                        <p>An iconic symbol of Hoi An, this beautiful bridge dates back to the 16th century.</p>
-                        <button class="btn btn-outline" onclick="window.location.href='attractions.html'">Learn More</button>
+                        <h3>🏡 Bungalow & Nhà Gỗ</h3>
+                        <p>Phòng nghỉ phong cách bungalow và nhà gỗ ấm cúng, hòa mình vào thiên nhiên với đầy đủ tiện nghi hiện đại.</p>
                     </div>
                 </div>
                 <div class="highlight-card">
                     <div class="card-image">
-                        <div class="image-placeholder">🏮 Lantern Festival</div>
+                        <img src="assets/images/3.jpg" alt="Khu vực BBQ" style="width: 100%; height: 250px; object-fit: cover;">
                     </div>
                     <div class="card-content">
-                        <h3>Monthly Lantern Festival</h3>
-                        <p>Experience the magical full moon lantern festival held every month in the old town.</p>
-                        <button class="btn btn-outline" onclick="window.location.href='attractions.html'">Learn More</button>
+                        <h3>🔥 Khu BBQ & Dã ngoại</h3>
+                        <p>Không gian nướng BBQ rộng rãi, phục vụ tiệc ngoài trời, teambuilding và các sự kiện tập thể.</p>
                     </div>
                 </div>
                 <div class="highlight-card">
                     <div class="card-image">
-                        <div class="image-placeholder">🛶 Thu Bon River</div>
+                        <img src="assets/images/4.jpg" alt="Hồ câu cá" style="width: 100%; height: 250px; object-fit: cover;">
                     </div>
                     <div class="card-content">
-                        <h3>Thu Bon River Cruise</h3>
-                        <p>Take a peaceful boat ride along the historic river that shaped Hoi An's history.</p>
-                        <button class="btn btn-outline" onclick="window.location.href='attractions.html'">Learn More</button>
+                        <h3>🎣 Hồ Câu Cá & Suối</h3>
+                        <p>Hồ câu cá sinh thái và suối tự nhiên trong lành, mang đến trải nghiệm thư giãn tuyệt vời.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/5.jpg" alt="Nhà hàng" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🍽️ Nhà Hàng Sinh Thái</h3>
+                        <p>Phục vụ các món ăn đặc sản vùng núi, ẩm thực Việt và thực đơn phong phú cho mọi khách hàng.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/6.jpg" alt="Khu vui chơi" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🎪 Khu Vui Chơi Trẻ Em</h3>
+                        <p>Sân chơi an toàn cho trẻ em với nhiều trò chơi ngoài trời và hoạt động giải trí thú vị.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="card-image">
+                        <img src="assets/images/7.jpg" alt="Không gian xanh" style="width: 100%; height: 250px; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>🌳 Vườn Sinh Thái</h3>
+                        <p>Không gian xanh mát với vườn cây ăn trái, rau sạch và các loại thảo mộc tự nhiên.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="highlights" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>🖼️ Hình Ảnh Khu Sinh Thái</h2>
+                <p>Khám phá vẻ đẹp của Nhà Tôi - Hòa Bình qua ảnh</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <img src="assets/images/8.jpg" alt="Khu sinh thái 1" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/9.jpg" alt="Khu sinh thái 2" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/10.jpg" alt="Khu sinh thái 3" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/11.jpg" alt="Khu sinh thái 4" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/12.jpg" alt="Khu sinh thái 5" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <img src="assets/images/13.jpg" alt="Khu sinh thái 6" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>❓ Câu Hỏi Thường Gặp</h2>
+                <p>Giải đáp những thắc mắc phổ biến của khách hàng</p>
+            </div>
+            <div class="faq-container" style="max-width: 900px; margin: 3rem auto 0;">
+                <div class="faq-item" style="margin-bottom: 1rem; border: 2px solid #ecf0f1; border-radius: 10px; overflow: hidden;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 1.5rem; background: white; border: none; text-align: left; font-size: 1.1rem; font-weight: bold; color: #2c3e50; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Thời gian hoạt động cấp treo như thế nào?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">▼</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 1.5rem; background: #f8f9fa; color: #555; line-height: 1.8;">
+                            Khu sinh thái mở cửa từ <strong>7:00 sáng đến 10:00 tối</strong> hàng ngày. Khách có thể check-in từ 14:00 và check-out trước 12:00 trưa. Nhà hàng phục vụ từ 7:00 đến 22:00.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" style="margin-bottom: 1rem; border: 2px solid #ecf0f1; border-radius: 10px; overflow: hidden;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 1.5rem; background: white; border: none; text-align: left; font-size: 1.1rem; font-weight: bold; color: #2c3e50; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Tôi có thể đặt vé qua đâu? Chính sách hoàn hủy như thế nào?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">▼</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 1.5rem; background: #f8f9fa; color: #555; line-height: 1.8;">
+                            Bạn có thể đặt phòng trực tiếp qua website hoặc liên hệ hotline <strong>0964 233 100</strong>. Chính sách hủy phòng: <br>
+                            • Hủy trước 7 ngày: Hoàn 100% tiền<br>
+                            • Hủy trước 3 ngày: Hoàn 50% tiền<br>
+                            • Hủy trong vòng 3 ngày: Không hoàn tiền
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" style="margin-bottom: 1rem; border: 2px solid #ecf0f1; border-radius: 10px; overflow: hidden;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 1.5rem; background: white; border: none; text-align: left; font-size: 1.1rem; font-weight: bold; color: #2c3e50; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Công viên có cho mang đồ ăn, đồ uống hoặc thú cưng vào không?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">▼</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 1.5rem; background: #f8f9fa; color: #555; line-height: 1.8;">
+                            <strong>Đồ ăn, đồ uống:</strong> Quý khách có thể mang theo đồ ăn nhẹ và nước uống. Tuy nhiên, chúng tôi khuyến khích sử dụng dịch vụ nhà hàng với thực đơn phong phú.<br><br>
+                            <strong>Thú cưng:</strong> Hiện tại khu sinh thái chưa cho phép mang thú cưng vào để đảm bảo an toàn và vệ sinh chung.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" style="margin-bottom: 1rem; border: 2px solid #ecf0f1; border-radius: 10px; overflow: hidden;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 1.5rem; background: white; border: none; text-align: left; font-size: 1.1rem; font-weight: bold; color: #2c3e50; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Khu du lịch có khu vực bảo quản tủ sắn cho du khách không?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">▼</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 1.5rem; background: #f8f9fa; color: #555; line-height: 1.8;">
+                            Có, chúng tôi có khu vực giữ đồ an toàn và miễn phí cho khách hàng. Quý khách có thể gửi hành lý tại lễ tân trước khi check-in hoặc sau khi check-out.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" style="margin-bottom: 1rem; border: 2px solid #ecf0f1; border-radius: 10px; overflow: hidden;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 1.5rem; background: white; border: none; text-align: left; font-size: 1.1rem; font-weight: bold; color: #2c3e50; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Thời gian hoạt động như thế nào?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">▼</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 1.5rem; background: #f8f9fa; color: #555; line-height: 1.8;">
+                            Khu sinh thái hoạt động <strong>quanh năm</strong>, cả ngày thường và cuối tuần. Thời gian lý tưởng nhất để ghé thăm là từ tháng 3 đến tháng 11 khi thời tiết mát mẻ và khô ráo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" style="margin-bottom: 1rem; border: 2px solid #ecf0f1; border-radius: 10px; overflow: hidden;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 1.5rem; background: white; border: none; text-align: left; font-size: 1.1rem; font-weight: bold; color: #2c3e50; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Khu du lịch có dịch vụ xe đưa đón cho du khách không?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">▼</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 1.5rem; background: #f8f9fa; color: #555; line-height: 1.8;">
+                            Có, chúng tôi cung cấp dịch vụ xe đưa đón từ Hà Nội hoặc các địa điểm lân cận. Vui lòng liên hệ trước để đặt dịch vụ này. Phí có thể áp dụng tùy theo khoảng cách.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,9 +271,9 @@
     <section class="cta">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Experience Hoi An?</h2>
-                <p>Book your perfect accommodation and start your adventure in this magical ancient town</p>
-                <button class="btn btn-primary" onclick="window.location.href='hotels.html'">Book Now</button>
+                <h2>Sẵn sàng trải nghiệm thiên nhiên?</h2>
+                <p>Đặt phòng tại Khu Sinh Thái Nhà Tôi - Hòa Bình và bắt đầu hành trình nghỉ dưỡng tuyệt vời</p>
+                <button class="btn btn-primary" onclick="window.location.href='hotels.html'">Đặt phòng ngay</button>
             </div>
         </div>
     </section>
@@ -142,26 +283,28 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Hoi An Tourism</h3>
-                    <p>Your gateway to experiencing the authentic beauty of Vietnam's ancient town.</p>
+                    <h3>🏡 Nhà Tôi - Hòa Bình</h3>
+                    <p>Khu Du Lịch Sinh Thái - Nghỉ dưỡng và Teambuilding giữa núi rừng Hòa Bình.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Liên kết nhanh</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="hotels.html">Hotels</a></li>
-                        <li><a href="attractions.html">Attractions</a></li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="restaurant.html">Nhà hàng</a></li>
+                        <li><a href="news.html">Tin tức & Khuyến mại</a></li>
+                        <li><a href="about-us.html">Về chúng tôi</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p>📧 info@hoiantourism.vn</p>
-                    <p>📞 +84 235 123 456</p>
-                    <p>📍 Hoi An, Quang Nam, Vietnam</p>
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 Hotline: 0964 233 100</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Hoi An Tourism. All rights reserved.</p>
+                <p>&copy; 2024 Du lịch Hòa Bình. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -173,30 +316,30 @@
             
             <!-- Login Form -->
             <div id="loginForm" class="auth-form">
-                <h2>Login</h2>
+                <h2>Đăng nhập</h2>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label for="loginEmail">Email:</label>
                         <input type="email" id="loginEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">Password:</label>
+                        <label for="loginPassword">Mật khẩu:</label>
                         <input type="password" id="loginPassword" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 </form>
                 <p class="auth-switch">
-                    Don't have an account? 
-                    <a href="#" onclick="showRegisterForm()">Register here</a>
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterForm()">Đăng ký tại đây</a>
                 </p>
             </div>
 
             <!-- Register Form -->
             <div id="registerForm" class="auth-form" style="display: none;">
-                <h2>Register</h2>
+                <h2>Đăng ký</h2>
                 <form onsubmit="handleRegister(event)">
                     <div class="form-group">
-                        <label for="registerUsername">Username:</label>
+                        <label for="registerUsername">Tên người dùng:</label>
                         <input type="text" id="registerUsername" name="username" required>
                     </div>
                     <div class="form-group">
@@ -204,14 +347,14 @@
                         <input type="email" id="registerEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="registerPassword">Password:</label>
+                        <label for="registerPassword">Mật khẩu:</label>
                         <input type="password" id="registerPassword" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
                 </form>
                 <p class="auth-switch">
-                    Already have an account? 
-                    <a href="#" onclick="showLoginForm()">Login here</a>
+                    Đã có tài khoản? 
+                    <a href="#" onclick="showLoginForm()">Đăng nhập tại đây</a>
                 </p>
             </div>
         </div>
@@ -222,19 +365,100 @@
         <div class="modal-content">
             <span class="close" onclick="closeDashboardModal()">&times;</span>
             <div id="userDashboard">
-                <h2>Welcome, <span id="username"></span>!</h2>
+                <h2>Xin chào, <span id="username"></span>!</h2>
                 <div class="dashboard-section">
-                    <h3>Your Bookings</h3>
+                    <h3>Đặt phòng của bạn</h3>
                     <div id="userBookings">
                         <!-- Bookings will be loaded here -->
                     </div>
                 </div>
-                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
             </div>
         </div>
     </div>
 
+    <script src="js/placeholder.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = button.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-answer').style.maxHeight = '0';
+                    item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                    item.querySelector('.faq-question').style.background = 'white';
+                }
+            });
+            
+            // Toggle current FAQ
+            if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
+                answer.style.maxHeight = '0';
+                icon.style.transform = 'rotate(0deg)';
+                button.style.background = 'white';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+                button.style.background = '#f8f9fa';
+            }
+        }
+        
+        // Handle active state for "Giới thiệu" link when scrolling to #about
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutSection = document.getElementById('about');
+            const gioiThieuLink = document.querySelector('a[href="index.html#about"]');
+            
+            // Check hash on load
+            const hash = window.location.hash;
+            if (hash === '#about') {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                gioiThieuLink.classList.add('active');
+            }
+
+            // Monitor scroll position
+            window.addEventListener('scroll', function() {
+                const aboutPosition = aboutSection.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                // If "about" section is in view (near top of screen)
+                if (aboutPosition < windowHeight / 2 && aboutPosition > -aboutSection.offsetHeight / 2) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    gioiThieuLink.classList.add('active');
+                    window.history.replaceState(null, null, '#about');
+                } 
+                // If scrolled back to top (hero section)
+                else if (window.scrollY < 100) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    window.history.replaceState(null, null, ' ');
+                }
+            });
+
+            // Update active state when clicking on "Giới thiệu"
+            gioiThieuLink.addEventListener('click', function(e) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+
+            // Update active state when clicking on "Trang chủ"
+            document.querySelector('a[href="index.html"]').addEventListener('click', function(e) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

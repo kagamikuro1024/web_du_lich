@@ -1,0 +1,630 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà Hàng - Khu Sinh Thái Nhà Tôi Hòa Bình</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .menu-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/images/5.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            color: white;
+        }
+        .menu-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .menu-section {
+            padding: 3rem 0;
+        }
+        .menu-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .menu-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .menu-header h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .menu-header .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .menu-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #ecf0f1;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #3498db;
+        }
+        .menu-item h3 {
+            color: #2c3e50;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .menu-item p {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+        .dish-icon {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .highlight-dish {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6e6 100%);
+            border-color: #f39c12;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        @media (max-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .menu-hero h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">Giới thiệu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="restaurant.html" class="nav-link active">Nhà hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link">Đặt phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">Tin tức & Khuyến mại</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us.html" class="nav-link">Về chúng tôi</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1 style="color: white;">🍽️ Nhà Hàng Sinh Thái</h1>
+            <p style="font-size: 1.2rem; margin-top: 1rem; color: white;">Thực đơn đa dạng với các món ăn đặc sản vùng núi</p>
+            <p style="font-size: 1rem; margin-top: 0.5rem; opacity: 0.9; color: white;">Phục vụ theo bàn hoặc đặt tiệc theo yêu cầu</p>
+        </div>
+    </section>
+
+    <!-- Menu 1 -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu-header">
+                <h2>🌟 MENU 1</h2>
+                <div class="price-tag">💰 1,150,000 VNĐ</div>
+                <p style="color: #7f8c8d; margin-top: 1rem;">Phù hợp cho nhóm gia đình và bạn bè</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="dish-icon">🦆</div>
+                    <h3>Rau đỏ tháp cẩm</h3>
+                    <p>Món khai vị thanh mát</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥗</div>
+                    <h3>Rau xào theo mùa</h3>
+                    <p>Rau xanh tươi ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🐓</div>
+                    <h3>Gà hấp 1/2 con</h3>
+                    <p>Gà ta thơm ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🔥</div>
+                    <h3>Gà nướng</h3>
+                    <p>Vị nướng đậm đà</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🐄</div>
+                    <h3>Bò xào măng</h3>
+                    <p>Thịt bò mềm, măng giòn</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Cá suối chiên</h3>
+                    <p>Cá suối tươi sống</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Ếch chiên giòn</h3>
+                    <p>Ếch đồng béo ngậy</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍄</div>
+                    <h3>Bê tái chanh</h3>
+                    <p>Món ngon đặc biệt</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🦐</div>
+                    <h3>Ba chỉ rang</h3>
+                    <p>Thịt ba chỉ thơm lừng</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥩</div>
+                    <h3>Trứng rán</h3>
+                    <p>Trứng gà sạch</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍲</div>
+                    <h3>Thịt trứng mầm tép</h3>
+                    <p>Kho đậm vị truyền thống</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Canh theo mùa</h3>
+                    <p>Canh thanh mát</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Củ chuối nấu xương</h3>
+                    <p>Món dân dã thơm ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🌽</div>
+                    <h3>Cơm</h3>
+                    <p>Cơm trắng dẻo thơm</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍉</div>
+                    <h3>Trái cây theo mùa</h3>
+                    <p>Hoa quả tráng miệng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu 2 -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu-header">
+                <h2>⭐ MENU 2</h2>
+                <div class="price-tag">💰 1,200,000 VNĐ</div>
+                <p style="color: #7f8c8d; margin-top: 1rem;">Thực đơn phong phú hơn cho nhóm đông</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="dish-icon">🥬</div>
+                    <h3>Rau xào theo mùa</h3>
+                    <p>Rau xanh tươi ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Trâu nấu lá nếp</h3>
+                    <p>Món đặc sản vùng núi</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🐓</div>
+                    <h3>Gà nướng</h3>
+                    <p>Gà nướng thơm lừng</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🦆</div>
+                    <h3>Canh rau</h3>
+                    <p>Canh rau thanh mát</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🐟</div>
+                    <h3>Cá suối chiên</h3>
+                    <p>Cá tươi ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Củ chuối nấu xương</h3>
+                    <p>Món dân dã đặc trưng</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Bê tái chanh</h3>
+                    <p>Thịt bê tươi ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🌽</div>
+                    <h3>Cơm</h3>
+                    <p>Cơm trắng dẻo</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍉</div>
+                    <h3>Trái cây</h3>
+                    <p>Hoa quả tươi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu 3 -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu-header">
+                <h2>🏆 MENU 3</h2>
+                <div class="price-tag">💰 1,300,000 VNĐ</div>
+                <p style="color: #7f8c8d; margin-top: 1rem;">Thực đơn cao cấp với các món đặc sản</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="dish-icon">🥗</div>
+                    <h3>Ngô chiên</h3>
+                    <p>Món khai vị giòn tan</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Khoai tây chiên</h3>
+                    <p>Khoai tây giòn rụm</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥗</div>
+                    <h3>Rau xào theo mùa</h3>
+                    <p>Rau xanh tươi</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🦐</div>
+                    <h3>Rau rừng thập cẩm</h3>
+                    <p>Rau rừng đặc sản</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍲</div>
+                    <h3>Cá hầm măng muối</h3>
+                    <p>Món cá đặc trưng</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Dê hấp</h3>
+                    <p>Thịt dê thơm ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Trâu xào rau muống</h3>
+                    <p>Thịt trâu mềm</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥩</div>
+                    <h3>Dê tái chanh</h3>
+                    <p>Món ngon độc đáo</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🦆</div>
+                    <h3>Bê tái chanh</h3>
+                    <p>Thịt bê tươi ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Dê xào lăn</h3>
+                    <p>Dê xào thơm lừng</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🦐</div>
+                    <h3>Ba chỉ rang</h3>
+                    <p>Ba chỉ béo ngậy</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Trứng rán</h3>
+                    <p>Trứng gà sạch</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍲</div>
+                    <h3>Canh rau theo mùa</h3>
+                    <p>Canh thanh mát</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Cà pháo</h3>
+                    <p>Cá kho tộ đậm đà</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🌽</div>
+                    <h3>Cơm</h3>
+                    <p>Cơm trắng dẻo thơm</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍰</div>
+                    <h3>Tráng miệng</h3>
+                    <p>Hoa quả và bánh ngọt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu 4 -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu-header">
+                <h2>👑 MENU 4</h2>
+                <div class="price-tag">💰 1,400,000 VNĐ</div>
+                <p style="color: #7f8c8d; margin-top: 1rem;">Thực đơn cao cấp nhất với các món đặc biệt</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="dish-icon">🥗</div>
+                    <h3>Khoai tây chiên</h3>
+                    <p>Món khai vị giòn tan</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Dê xào lăn</h3>
+                    <p>Món đặc sản cao cấp</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥗</div>
+                    <h3>Rau rừng thập cẩm</h3>
+                    <p>Rau rừng đặc sản</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🦐</div>
+                    <h3>Dê nướng</h3>
+                    <p>Dê nướng thơm lừng</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🐟</div>
+                    <h3>Dê hấp</h3>
+                    <p>Thịt dê hấp mềm</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Củ chuối nấu xương</h3>
+                    <p>Món truyền thống</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍖</div>
+                    <h3>Dê tái chanh</h3>
+                    <p>Thịt dê tươi ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥩</div>
+                    <h3>Canh rau theo mùa</h3>
+                    <p>Canh thanh mát</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🦆</div>
+                    <h3>Trứng rán</h3>
+                    <p>Trứng gà sạch</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🥘</div>
+                    <h3>Canh rau</h3>
+                    <p>Canh rau ngon</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🌽</div>
+                    <h3>Cơm</h3>
+                    <p>Cơm trắng dẻo thơm</p>
+                </div>
+                <div class="menu-item">
+                    <div class="dish-icon">🍰</div>
+                    <h3>Tráng miệng</h3>
+                    <p>Hoa quả cao cấp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant Gallery -->
+    <section class="menu-section" style="background: #fff;">
+        <div class="container">
+            <div class="menu-header">
+                <h2>🖼️ Không Gian Nhà Hàng</h2>
+                <p style="color: #7f8c8d;">Không gian ẩm thực giữa thiên nhiên</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/5.jpg" alt="Nhà hàng 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/8.jpg" alt="Nhà hàng 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/9.jpg" alt="Nhà hàng 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>📞 Đặt Bàn Ngay Hôm Nay</h2>
+                <p>Liên hệ để đặt bàn hoặc đặt tiệc theo yêu cầu</p>
+                <div style="margin-top: 2rem;">
+                    <p style="font-size: 1.3rem; margin-bottom: 1rem;">
+                        ☎️ Hotline: <strong>0964 233 100</strong>
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        📧 Email: nhatoihoabinh@gmail.com
+                    </p>
+                </div>
+                <button class="btn btn-primary" onclick="window.location.href='hotels.html'" style="margin-top: 2rem;">
+                    Đặt phòng + Ăn uống combo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏡 Nhà Tôi - Hòa Bình</h3>
+                    <p>Khu Du Lịch Sinh Thái - Nghỉ dưỡng và Ẩm thực cao cấp</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="attractions.html">Giới thiệu</a></li>
+                        <li><a href="restaurant.html">Nhà hàng</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 Hotline: 0964 233 100</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Khu Du Lịch Sinh Thái Nhà Tôi - Hòa Bình. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Đăng nhập</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Mật khẩu:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </form>
+                <p class="auth-switch">
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterForm()">Đăng ký tại đây</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Đăng ký</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerUsername">Tên người dùng:</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Mật khẩu:</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </form>
+                <p class="auth-switch">
+                    Đã có tài khoản? 
+                    <a href="#" onclick="showLoginForm()">Đăng nhập tại đây</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard Modal -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDashboardModal()">&times;</span>
+            <div id="userDashboard">
+                <h2>Xin chào, <span id="username"></span>!</h2>
+                <div class="dashboard-section">
+                    <h3>Đặt phòng của bạn</h3>
+                    <div id="userBookings">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/placeholder.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

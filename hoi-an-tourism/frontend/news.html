@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin Tức & Khuyến Mại - Khu Sinh Thái Nhà Tôi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Keep navbar transparent always on this page */
+        .navbar.navbar-transparent {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .navbar.navbar-transparent.scrolled {
+            background: rgba(255, 255, 255, 0.15) !important;
+        }
+        
+        .news-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/images/main.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 10rem 0 4rem;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        .news-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .news-hero p {
+            color: white;
+        }
+        .news-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        .news-tab {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .news-tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        .news-tab:hover {
+            color: #2980b9;
+        }
+        .tab-content {
+            display: none;
+            padding: 3rem 0;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .news-grid {
+            max-width: 900px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .news-grid.horizontal {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: row;
+            cursor: pointer;
+        }
+        .news-card.horizontal {
+            flex-direction: column;
+        }
+        .news-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .news-card.horizontal:hover {
+            transform: translateY(-10px);
+        }
+        .news-card-image {
+            width: 300px;
+            height: 250px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .news-card.horizontal .news-card-image {
+            width: 100%;
+            height: 250px;
+        }
+        @media (max-width: 768px) {
+            .news-card {
+                flex-direction: column;
+            }
+            .news-card-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        .news-card-content {
+            padding: 1.5rem;
+        }
+        .news-card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .news-card-excerpt {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .news-card-date {
+            font-size: 0.9rem;
+            color: #95a5a6;
+            margin-bottom: 1rem;
+        }
+        .news-card-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .read-more-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .read-more-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">Giới thiệu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="restaurant.html" class="nav-link">Nhà hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link">Đặt phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link active">Tin tức & Khuyến mại</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us.html" class="nav-link">Về chúng tôi</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="news-hero">
+        <div class="container">
+            <h1>📰 Tin Tức & Khuyến Mại</h1>
+            <p style="font-size: 1.2rem; margin-top: 1rem; color: white;">Cập nhật thông tin mới nhất và các ưu đãi hấp dẫn</p>
+        </div>
+    </section>
+
+    <!-- Tabs -->
+    <div class="container">
+        <div class="news-tabs">
+            <div class="news-tab active" onclick="showTab('promotions')">🎁 Ưu Đãi</div>
+            <div class="news-tab" onclick="showTab('news')">📢 Tin Tức</div>
+        </div>
+
+        <!-- Promotions Tab -->
+        <div id="promotions" class="tab-content active">
+            <div class="news-grid">
+                <!-- Promotion 1 -->
+                <div class="news-card">
+                    <img src="assets/images/15.png" alt="Ưu đãi tháng 10" class="news-card-image">
+                    <div class="news-card-content">
+                        <div class="news-card-badge">🔥 ƯU ĐÃI HOT</div>
+                        <h3 class="news-card-title">🌿 Tháng 10 Rực Rỡ – Ưu Đãi Ngập Tràn</h3>
+                        <p class="news-card-date">📅 Áp dụng: Tháng 10/2025</p>
+                        <p class="news-card-excerpt">
+                            🎉 Chào mừng tháng 10! Khu Sinh Thái Nhà Tôi mang đến những ưu đãi đặc biệt:<br>
+                            ✨ <strong>Giảm 15%</strong> cho đặt phòng từ 2 đêm trở lên<br>
+                            ✨ <strong>Tặng 1 bữa ăn sáng</strong> miễn phí
+                        </p>
+                        <a href="hotels.html" class="read-more-btn">🏡 Đặt phòng ngay</a>
+                    </div>
+                </div>
+
+                <!-- Promotion 2 -->
+                <div class="news-card">
+                    <img src="assets/images/16.png" alt="Ưu đãi teambuilding" class="news-card-image">
+                    <div class="news-card-content">
+                        <div class="news-card-badge">💼 DOANH NGHIỆP</div>
+                        <h3 class="news-card-title">Chạm Bình Yên Giữa Núi Rừng – Trải Nghiệm 1 Ngày Trọn Vẹn</h3>
+                        <p class="news-card-date">📅 Chương trình đặc biệt</p>
+                        <p class="news-card-excerpt">
+                            🌄 Dành cho nhóm từ <strong>10 người trở lên</strong><br>
+                            🍽️ Ăn trưa đặc sản núi rừng<br>
+                            🎯 Hoạt động teambuilding sáng tạo<br>
+                            <strong>💰 CHỈ TỪ: 500,000 VNĐ/người</strong>
+                        </p>
+                        <a href="hotels.html" class="read-more-btn">🏡 Đặt phòng ngay</a>
+                    </div>
+                </div>
+
+                <!-- Promotion 3 -->
+                <div class="news-card">
+                    <img src="assets/images/17.png" alt="Combo ưu đãi" class="news-card-image">
+                    <div class="news-card-content">
+                        <div class="news-card-badge">⭐ COMBO ĐẶC BIỆT</div>
+                        <h3 class="news-card-title">Combo Nghỉ Dưỡng + BBQ – Giảm Ngay 20%</h3>
+                        <p class="news-card-date">📅 Áp dụng: Cuối tuần</p>
+                        <p class="news-card-excerpt">
+                            🔥 Đặt phòng 2 ngày 1 đêm kèm tiệc BBQ – Tiết kiệm đến 20%!<br>
+                            🏡 Phòng nghỉ tiêu chuẩn 2N1Đ<br>
+                            🍖 Tiệc BBQ ngoài trời<br>
+                            <strong>💰 CHỈ TỪ: 1,800,000 VNĐ</strong>
+                        </p>
+                        <a href="hotels.html" class="read-more-btn">🏡 Đặt phòng ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Tab -->
+        <div id="news" class="tab-content">
+            <div class="news-grid">
+                <!-- News 1 -->
+                <div class="news-card" onclick="window.location.href='news-detail-1.html'">
+                    <img src="assets/images/18.png" alt="Tin tức 1" class="news-card-image">
+                    <div class="news-card-content">
+                        <h3 class="news-card-title">Khu Sinh Thái Nhà Tôi – Điểm Đến Lý Tưởng Cho Kỳ Nghỉ Cuối Tuần</h3>
+                        <p class="news-card-date">📅 20/10/2025</p>
+                        <p class="news-card-excerpt">
+                            Nằm giữa núi rừng Hòa Bình, Khu Sinh Thái Nhà Tôi là nơi hoàn hảo để bạn tạm rời xa sự ồn ào của thành phố...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- News 2 -->
+                <div class="news-card" onclick="window.location.href='news-detail-2.html'">
+                    <img src="assets/images/19.png" alt="Hoạt động teambuilding" class="news-card-image">
+                    <div class="news-card-content">
+                        <h3 class="news-card-title">Teambuilding Sáng Tạo Tại Khu Sinh Thái Nhà Tôi</h3>
+                        <p class="news-card-date">📅 18/10/2025</p>
+                        <p class="news-card-excerpt">
+                            Bạn đang tìm kiếm một địa điểm tổ chức teambuilding độc đáo, gần gũi với thiên nhiên và đầy cảm hứng?...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- News 3 -->
+                <div class="news-card" onclick="window.location.href='news-detail-3.html'">
+                    <img src="assets/images/20.png" alt="Ẩm thực đặc sản" class="news-card-image">
+                    <div class="news-card-content">
+                        <h3 class="news-card-title">Khám Phá Ẩm Thực Đặc Sản Vùng Núi</h3>
+                        <p class="news-card-date">📅 15/10/2025</p>
+                        <p class="news-card-excerpt">
+                            Nhà Hàng Sinh Thái tự hào mang đến thực đơn phong phú với các món ăn đặc sản núi rừng Hòa Bình...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏡 Nhà Tôi - Hòa Bình</h3>
+                    <p>Khu Du Lịch Sinh Thái - Nghỉ dưỡng và Ẩm thực cao cấp</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="restaurant.html">Nhà hàng</a></li>
+                        <li><a href="news.html">Tin tức & Khuyến mại</a></li>
+                        <li><a href="about-us.html">Về chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 Hotline: 0964 233 100</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Khu Du Lịch Sinh Thái Nhà Tôi - Hòa Bình. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Đăng nhập</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Mật khẩu:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </form>
+                <p class="auth-switch">
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterForm()">Đăng ký tại đây</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Đăng ký</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerUsername">Tên người dùng:</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Mật khẩu:</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </form>
+                <p class="auth-switch">
+                    Đã có tài khoản? 
+                    <a href="#" onclick="showLoginForm()">Đăng nhập tại đây</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard Modal -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDashboardModal()">&times;</span>
+            <div id="userDashboard">
+                <h2>Xin chào, <span id="username"></span>!</h2>
+                <div class="dashboard-section">
+                    <h3>Đặt phòng của bạn</h3>
+                    <div id="userBookings">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/placeholder.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.news-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

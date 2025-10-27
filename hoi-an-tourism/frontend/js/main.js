@@ -209,3 +209,20 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Hero scroll indicator click handler
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            // Scroll to the next section after hero (usually #about)
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+});

@@ -110,6 +110,30 @@ app.get('/attractions', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/attractions.html'));
 });
 
+app.get('/restaurant.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/restaurant.html'));
+});
+
+app.get('/news.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/news.html'));
+});
+
+app.get('/about-us.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/about-us.html'));
+});
+
+app.get('/news-detail-1.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/news-detail-1.html'));
+});
+
+app.get('/news-detail-2.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/news-detail-2.html'));
+});
+
+app.get('/news-detail-3.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/news-detail-3.html'));
+});
+
 // User Registration
 app.post('/api/register', async (req, res) => {
     try {

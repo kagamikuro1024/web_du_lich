@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khu Sinh Thái Nhà Tôi – Điểm Đến Lý Tưởng - Tin Tức</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .article-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/images/18.png');
+            background-size: cover;
+            background-position: center;
+            padding: 10rem 0 6rem;
+            text-align: center;
+            color: white;
+        }
+        .article-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .article-content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .article-meta {
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .article-body {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        .article-body h2 {
+            color: #3498db;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #3498db;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+        .back-button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">Giới thiệu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="restaurant.html" class="nav-link">Nhà hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link">Đặt phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link active">Tin tức & Khuyến mại</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us.html" class="nav-link">Về chúng tôi</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="article-hero">
+        <div class="container">
+            <h1>Khu Sinh Thái Nhà Tôi – Điểm Đến Lý Tưởng Cho Kỳ Nghỉ Cuối Tuần</h1>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <div class="article-content">
+        <a href="news.html" class="back-button">← Quay lại</a>
+        
+        <div class="article-meta">
+            📅 Ngày đăng: 20/10/2025 | 👤 Tác giả: Ban biên tập
+        </div>
+
+        <div class="article-body">
+            <p>
+                Nằm giữa núi rừng Hòa Bình, <strong>Khu Sinh Thái Nhà Tôi</strong> là nơi hoàn hảo để bạn tạm rời xa sự ồn ào của thành phố, 
+                tìm lại sự bình yên và kết nối với thiên nhiên. Với không gian xanh mát, không khí trong lành và các tiện nghi hiện đại, 
+                đây chính là địa điểm nghỉ dưỡng lý tưởng cho những ai muốn "sạc lại năng lượng" sau những ngày làm việc căng thẳng.
+            </p>
+
+            <h2>🌿 Không Gian Xanh Mát, Gần Gũi Thiên Nhiên</h2>
+            <p>
+                Với diện tích rộng lớn, khu sinh thái được bao quanh bởi cây xanh, núi non hùng vĩ và suối chảy trong veo. 
+                Bạn có thể dễ dàng tìm thấy những góc nhỏ yên tĩnh để thư giãn, đọc sách, hoặc đơn giản là ngắm cảnh và 
+                hít thở không khí trong lành.
+            </p>
+            <p>
+                Đặc biệt, khu vực có nhiều con đường mòn dẫn vào rừng, thích hợp cho những ai yêu thích trekking nhẹ nhàng 
+                hoặc đi bộ khám phá thiên nhiên. Buổi sáng sớm, bạn sẽ được thức dậy bởi tiếng chim hót, tiếng suối chảy – 
+                một điều khó có được ở thành phố.
+            </p>
+
+            <h2>🏡 Phòng Nghỉ Đa Dạng, Tiện Nghi Hiện Đại</h2>
+            <p>
+                Khu Sinh Thái Nhà Tôi cung cấp nhiều loại hình lưu trú phù hợp với mọi nhu cầu:
+            </p>
+            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                <li><strong>Bungalow gần suối:</strong> Thích hợp cho những ai muốn tận hưởng âm thanh suối chảy và không gian riêng tư.</li>
+                <li><strong>Nhà nghỉ gỗ:</strong> Mang phong cách rustic, ấm cúng, gần gũi với thiên nhiên.</li>
+                <li><strong>Phòng khách sạn cao cấp:</strong> Đầy đủ tiện nghi như điều hòa, nước nóng lạnh, TV, wifi, phù hợp cho gia đình.</li>
+            </ul>
+            <p>
+                Tất cả phòng nghỉ đều có view đẹp ra núi rừng hoặc suối, mang đến trải nghiệm gần gũi với thiên nhiên 
+                nhưng vẫn đảm bảo sự thoải mái.
+            </p>
+
+            <h2>🍽️ Ẩm Thực Đặc Sản Vùng Núi</h2>
+            <p>
+                Nhà hàng tại khu sinh thái phục vụ các món ăn đặc sản vùng núi Hòa Bình, được chế biến từ nguyên liệu 
+                tươi ngon, sạch. Bạn có thể thưởng thức gà đồi, cá suối, rau rừng và nhiều món ăn truyền thống khác.
+            </p>
+            <p>
+                Ngoài ra, khu vực BBQ ngoài trời cũng là điểm nhấn thu hút nhiều du khách, đặc biệt là các nhóm bạn 
+                và gia đình muốn tổ chức tiệc ngoài trời.
+            </p>
+
+            <h2>🎯 Hoạt Động Vui Chơi Phong Phú</h2>
+            <p>
+                Ngoài nghỉ ngơi thư giãn, bạn có thể tham gia nhiều hoạt động thú vị như:
+            </p>
+            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                <li>Câu cá tại hồ câu sinh thái</li>
+                <li>Tắm suối tự nhiên</li>
+                <li>Teambuilding với các trò chơi ngoài trời</li>
+                <li>Cắm trại qua đêm (có hỗ trợ lều và dụng cụ)</li>
+                <li>Khám phá các làng văn hóa gần đó</li>
+            </ul>
+
+            <h2>💰 Giá Cả Hợp Lý, Dịch Vụ Tận Tâm</h2>
+            <p>
+                Với mức giá hợp lý và nhiều gói combo ưu đãi, Khu Sinh Thái Nhà Tôi là lựa chọn tuyệt vời cho những 
+                chuyến du lịch cuối tuần của gia đình, bạn bè hoặc các đoàn thể doanh nghiệp.
+            </p>
+            <p>
+                Đội ngũ nhân viên nhiệt tình, chuyên nghiệp luôn sẵn sàng hỗ trợ để mang đến trải nghiệm tốt nhất 
+                cho khách hàng.
+            </p>
+
+            <h2>📞 Liên Hệ Đặt Phòng</h2>
+            <p>
+                Để biết thêm chi tiết và đặt phòng, vui lòng liên hệ:<br>
+                📞 <strong>Hotline: 0964 233 100</strong><br>
+                📧 <strong>Email: nhatoihoabinh@gmail.com</strong>
+            </p>
+
+            <p style="margin-top: 3rem; padding: 2rem; background: #f8f9fa; border-left: 5px solid #3498db; border-radius: 5px;">
+                <strong>💡 Lời khuyên:</strong> Nên đặt phòng trước ít nhất 3-5 ngày để đảm bảo có chỗ, đặc biệt vào 
+                các dịp cuối tuần và lễ tết. Hãy mang theo quần áo thoải mái, giày thể thao và kem chống nắng để có 
+                trải nghiệm tốt nhất!
+            </p>
+        </div>
+
+        <a href="news.html" class="back-button">← Quay lại Tin tức</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏡 Nhà Tôi - Hòa Bình</h3>
+                    <p>Khu Du Lịch Sinh Thái - Nghỉ dưỡng và Ẩm thực cao cấp</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="restaurant.html">Nhà hàng</a></li>
+                        <li><a href="news.html">Tin tức & Khuyến mại</a></li>
+                        <li><a href="about-us.html">Về chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 Hotline: 0964 233 100</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Khu Du Lịch Sinh Thái Nhà Tôi - Hòa Bình. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/placeholder.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

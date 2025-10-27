@@ -1,5 +1,8 @@
 // Authentication functionality
-const API_BASE_URL = 'http://localhost:3000/api';
+// Auto-detect if running on ngrok or localhost
+const API_BASE_URL = window.location.hostname.includes('ngrok') 
+    ? `${window.location.protocol}//${window.location.host}/api`
+    : 'http://localhost:3000/api';
 
 // Check if user is logged in on page load
 document.addEventListener('DOMContentLoaded', function() {

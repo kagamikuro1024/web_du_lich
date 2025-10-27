@@ -1,0 +1,271 @@
+/* Homepage Modern Design - Inspired by Mandala Hotels */
+
+/* Update About Section with better cards */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.about-item {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border-top: 4px solid transparent;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.about-item:nth-child(1) { border-top-color: #4A90E2; }
+.about-item:nth-child(2) { border-top-color: #F5B041; }
+.about-item:nth-child(3) { border-top-color: #4A90E2; }
+.about-item:nth-child(4) { border-top-color: #F5B041; }
+
+.about-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.about-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    line-height: 1;
+    height: 3.5rem;
+}
+
+.about-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-weight: 600;
+    min-height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-item p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #666;
+    flex: 1;
+}
+
+/* Highlights Section - Room Cards Style */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.highlight-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.card-image {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.highlight-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 2rem;
+}
+
+.card-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.card-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #4A90E2;
+    color: #4A90E2;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background: #4A90E2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* CTA Section Enhancement */
+.cta {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.95), rgba(245, 176, 65, 0.95)),
+                url('../images/1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 6rem 0;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.9), rgba(245, 176, 65, 0.8));
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cta h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.cta p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.cta .btn-primary {
+    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.cta .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #4A90E2, #F5B041);
+    border-radius: 2px;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 1.5rem auto 0;
+    line-height: 1.6;
+}
+
+/* About Section Background */
+.about {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-grid,
+    .highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .cta h2 {
+        font-size: 2rem;
+    }
+    
+    .cta p {
+        font-size: 1.1rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .section-header p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-item,
+    .card-content {
+        padding: 1.5rem;
+    }
+    
+    .cta {
+        padding: 4rem 0;
+    }
+    
+    .cta h2 {
+        font-size: 1.7rem;
+    }
+}

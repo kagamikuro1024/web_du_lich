@@ -25,7 +25,7 @@ async function sendOwnerNotification(bookingData) {
     
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.OWNER_EMAIL || 'khusinhthainhato@gmail.com',
+        to: process.env.OWNER_EMAIL || 'khusinhthainhatoi@gmail.com',
         subject: `[ĐẶT PHÒNG MỚI] ${fullName} - ${roomType}`,
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #f8f9fa; border-radius: 10px;">
@@ -92,7 +92,7 @@ async function sendOwnerNotification(bookingData) {
                 
                 <div style="text-align: center; padding: 20px; color: #666; font-size: 12px;">
                     <p>Khu Sinh Thái Nhà Tôi Hòa Bình</p>
-                    <p>📍 Xóm Nganh, xã Liên Sơn, huyện Lương Sơn, Tỉnh Hòa Bình</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, Tỉnh Hòa Bình</p>
                     <p>☎️ 0964 233 100 - 0963 631 295</p>
                 </div>
             </div>
@@ -173,7 +173,7 @@ async function sendCustomerConfirmation(bookingData) {
                         </p>
                         <p style="margin: 5px 0;">
                             <strong>Email:</strong> 
-                            <a href="mailto:khusinhthainhato@gmail.com" style="color: #1976D2;">khusinhthainhato@gmail.com</a>
+                            <a href="mailto:khusinhthainhatoi@gmail.com" style="color: #1976D2;">khusinhthainhatoi@gmail.com</a>
                         </p>
                     </div>
                     
@@ -189,7 +189,7 @@ async function sendCustomerConfirmation(bookingData) {
                 
                 <div style="text-align: center; padding: 20px; color: #666; font-size: 12px; border-top: 1px solid #ddd; margin-top: 20px;">
                     <p style="margin: 5px 0;"><strong>Khu Sinh Thái Nhà Tôi Hòa Bình</strong></p>
-                    <p style="margin: 5px 0;">📍 Xóm Nganh, xã Liên Sơn, huyện Lương Sơn, Tỉnh Hòa Bình</p>
+                    <p style="margin: 5px 0;">📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, Tỉnh Hòa Bình</p>
                     <p style="margin: 5px 0;">☎️ 0964 233 100 - 0963 631 295</p>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotels & Accommodation - Hoi An Tourism</title>
+    <title>Đặt phòng - Khu Sinh Thái Nhà Tôi Hòa Bình</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -11,17 +11,28 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>Hoi An Tourism</h2>
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a href="hotels.html" class="nav-link active">Hotels</a>
+                    <a href="index.html#about" class="nav-link">Giới thiệu</a>
                 </li>
                 <li class="nav-item">
-                    <a href="attractions.html" class="nav-link">Attractions</a>
+                    <a href="restaurant.html" class="nav-link">Nhà hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link active">Đặt phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">Tin tức & Khuyến mại</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us.html" class="nav-link">Về chúng tôi</a>
                 </li>
                 <li class="nav-item" id="auth-nav">
                     <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
@@ -36,148 +47,272 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
+    <section class="page-header" style="background-image: url('assets/images/main.jpg');">
         <div class="container">
-            <h1>Hotels & Accommodation</h1>
-            <p>Find your perfect stay in beautiful Hoi An</p>
+            <h1>Đặt Phòng Nghỉ Dưỡng</h1>
+            <p>Trải nghiệm thiên nhiên tại Khu Sinh Thái Nhà Tôi - Hòa Bình</p>
         </div>
     </section>
 
     <!-- Hotels Section -->
     <section class="hotels">
         <div class="container">
-            <div class="hotels-grid">
-                <!-- Hotel 1 -->
-                <div class="hotel-card">
-                    <div class="hotel-image">
-                        <div class="image-placeholder">🏨 Hoi An Riverside Resort</div>
-                        <div class="hotel-price">$120/night</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>Hoi An Riverside Resort & Spa</h3>
-                        <div class="hotel-rating">
-                            ⭐⭐⭐⭐⭐ (4.8/5) - 324 reviews
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2>Bảng giá & Đặt phòng</h2>
+                <p>Xem chi tiết bảng giá dịch vụ và liên hệ đặt phòng ngay</p>
+            </div>
+            
+            <!-- Homestay Introduction -->
+            <div style="max-width: 900px; margin: 0 auto 3rem; text-align: center;">
+                <img src="assets/images/5.jpg" alt="Khu Sinh Thái Nhà Tôi" style="width: 100%; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; color: #2c3e50;">Về Khu Sinh Thái Nhà Tôi</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 2rem;">
+                    Nằm giữa thiên nhiên núi rừng hùng vĩ của Lương Sơn, Hòa Bình, Khu Sinh Thái Nhà Tôi là điểm đến lý tưởng 
+                    cho những ai muốn trốn khỏi sự ồn ào của thành phố và hòa mình vào thiên nhiên trong lành. 
+                    Với không gian rộng rãi, thoáng đãng cùng các dịch vụ tiện nghi hiện đại, chúng tôi cam kết mang đến 
+                    cho bạn những trải nghiệm nghỉ dưỡng tuyệt vời nhất.
+                </p>
+                
+                <!-- Tiện nghi Section - Redesigned -->
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2c3e50; text-align: center;">🏡 Tiện nghi & Dịch vụ</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-top: 3px solid #4A90E2;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🏠</div>
+                            <strong style="color: #2c3e50; display: block; margin-bottom: 0.5rem;">Phòng nghỉ tiện nghi</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0;">Phòng đầy đủ tiện nghi, view đẹp</p>
                         </div>
-                        <p>Luxury riverside resort with traditional Vietnamese architecture, spa services, and stunning river views.</p>
-                        <div class="hotel-amenities">
-                            <span class="amenity">🏊 Pool</span>
-                            <span class="amenity">🍽️ Restaurant</span>
-                            <span class="amenity">💆 Spa</span>
-                            <span class="amenity">🅿️ Parking</span>
+                        <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-top: 3px solid #F5B041;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🍽️</div>
+                            <strong style="color: #2c3e50; display: block; margin-bottom: 0.5rem;">Nhà hàng</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0;">Ẩm thực địa phương đặc sắc</p>
                         </div>
-                        <button class="btn btn-primary" onclick="bookRoom('Hoi An Riverside Resort & Spa', 'Deluxe River View', 120)">Book Now</button>
-                    </div>
-                </div>
-
-                <!-- Hotel 2 -->
-                <div class="hotel-card">
-                    <div class="hotel-image">
-                        <div class="image-placeholder">🏮 Ancient House Resort</div>
-                        <div class="hotel-price">$80/night</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>Ancient House Resort</h3>
-                        <div class="hotel-rating">
-                            ⭐⭐⭐⭐ (4.5/5) - 156 reviews
+                        <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-top: 3px solid #4A90E2;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🏊</div>
+                            <strong style="color: #2c3e50; display: block; margin-bottom: 0.5rem;">Hồ bơi</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0;">Hồ bơi ngoài trời trong lành</p>
                         </div>
-                        <p>Charming boutique resort in the heart of the ancient town, walking distance to all attractions.</p>
-                        <div class="hotel-amenities">
-                            <span class="amenity">🏛️ Historic</span>
-                            <span class="amenity">🍽️ Restaurant</span>
-                            <span class="amenity">🚲 Bike Rental</span>
-                            <span class="amenity">❄️ AC</span>
+                        <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-top: 3px solid #F5B041;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🚲</div>
+                            <strong style="color: #2c3e50; display: block; margin-bottom: 0.5rem;">Hoạt động ngoài trời</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0;">Đi bộ, xe đạp, câu cá</p>
                         </div>
-                        <button class="btn btn-primary" onclick="bookRoom('Ancient House Resort', 'Traditional Suite', 80)">Book Now</button>
-                    </div>
-                </div>
-
-                <!-- Hotel 3 -->
-                <div class="hotel-card">
-                    <div class="hotel-image">
-                        <div class="image-placeholder">🌺 Garden Villa Hotel</div>
-                        <div class="hotel-price">$65/night</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>Garden Villa Hotel</h3>
-                        <div class="hotel-rating">
-                            ⭐⭐⭐⭐ (4.3/5) - 89 reviews
+                        <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-top: 3px solid #4A90E2;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🅿️</div>
+                            <strong style="color: #2c3e50; display: block; margin-bottom: 0.5rem;">Bãi đỗ xe</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0;">Đỗ xe miễn phí, an toàn</p>
                         </div>
-                        <p>Peaceful garden setting with comfortable rooms, perfect for families and budget-conscious travelers.</p>
-                        <div class="hotel-amenities">
-                            <span class="amenity">🌳 Garden</span>
-                            <span class="amenity">👨‍👩‍👧‍👦 Family</span>
-                            <span class="amenity">🍳 Breakfast</span>
-                            <span class="amenity">📶 WiFi</span>
+                        <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-top: 3px solid #F5B041;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">📶</div>
+                            <strong style="color: #2c3e50; display: block; margin-bottom: 0.5rem;">WiFi miễn phí</strong>
+                            <p style="font-size: 0.9rem; color: #666; margin: 0;">Kết nối internet tốc độ cao</p>
                         </div>
-                        <button class="btn btn-primary" onclick="bookRoom('Garden Villa Hotel', 'Family Room', 65)">Book Now</button>
                     </div>
                 </div>
 
-                <!-- Hotel 4 -->
-                <div class="hotel-card">
-                    <div class="hotel-image">
-                        <div class="image-placeholder">🏖️ Beach Front Resort</div>
-                        <div class="hotel-price">$95/night</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>Beach Front Resort</h3>
-                        <div class="hotel-rating">
-                            ⭐⭐⭐⭐ (4.4/5) - 203 reviews
-                        </div>
-                        <p>Beachfront location with direct beach access, water sports, and sunset views over the South China Sea.</p>
-                        <div class="hotel-amenities">
-                            <span class="amenity">🏖️ Beach</span>
-                            <span class="amenity">🏄 Water Sports</span>
-                            <span class="amenity">🍹 Bar</span>
-                            <span class="amenity">🏊 Pool</span>
-                        </div>
-                        <button class="btn btn-primary" onclick="bookRoom('Beach Front Resort', 'Ocean View', 95)">Book Now</button>
-                    </div>
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; border-left: 5px solid var(--primary-yellow);">
+                    <h4 style="color: var(--primary-blue); margin-bottom: 1rem; font-size: 1.5rem; text-align: center;">📋 Bảng Giá Dịch Vụ</h4>
+                    <p style="margin-bottom: 1.5rem; color: var(--text-light); text-align: center;">
+                        Bảng giá chi tiết các loại phòng và dịch vụ tại Khu Sinh Thái Nhà Tôi Hòa Bình
+                    </p>
+                    
+                    <!-- Bảng giá chi tiết theo sheet mới -->
+                    <p style="margin-bottom: 1.5rem; text-align: center;">
+                        <strong style="color: #E74C3C;">Áp dụng từ ngày 01/04/2025 đến 30/12/2025</strong>
+                    </p>
+                    <div id="priceTableContainer"></div>
                 </div>
+            </div>
 
-                <!-- Hotel 5 -->
-                <div class="hotel-card">
-                    <div class="hotel-image">
-                        <div class="image-placeholder">🎋 Bamboo Eco Lodge</div>
-                        <div class="hotel-price">$45/night</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>Bamboo Eco Lodge</h3>
-                        <div class="hotel-rating">
-                            ⭐⭐⭐⭐ (4.2/5) - 67 reviews
+            <!-- Contact & Booking Form - 2 Columns -->
+            <div style="max-width: 1200px; margin: 3rem auto;">
+                <div class="contact-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    
+                    <!-- Contact Section - Left -->
+                    <div style="padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                        <h3 style="text-align: center; color: #2c3e50; margin-bottom: 2rem; font-size: 1.8rem;">📞 Liên hệ đặt phòng</h3>
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div style="text-align: center; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">📱</div>
+                                <strong style="display: block; margin-bottom: 0.5rem; color: #2c3e50;">Hotline</strong>
+                                <a href="tel:0964233100" style="color: #e74c3c; text-decoration: none; font-size: 1.2rem; display: block;">
+                                    0964 233 100
+                                </a>
+                                <span style="display: block; margin: 0.3rem 0; color: #666;">hoặc</span>
+                                <a href="tel:0963631295" style="color: #e74c3c; text-decoration: none; font-size: 1.2rem; display: block;">
+                                    0963 631 295
+                                </a>
+                            </div>
+                            <div style="text-align: center; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">📧</div>
+                                <strong style="display: block; margin-bottom: 0.5rem; color: #2c3e50;">Email</strong>
+                                <a href="mailto:khusinhthainhatoi@gmail.com" style="color: #e74c3c; text-decoration: none; font-size: 0.95rem; word-break: break-all; display: block;">
+                                    khusinhthainhatoi@gmail.com
+                                </a>
+                            </div>
+                            <div style="text-align: center; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
+                                <strong style="display: block; margin-bottom: 0.5rem; color: #2c3e50;">Địa chỉ</strong>
+                                <span style="color: #555; font-size: 1rem; line-height: 1.5;">
+                                    Xóm Ngành, xã Liên Sơn<br>
+                                    huyện Lương Sơn, Tỉnh Hòa Bình
+                                </span>
+                            </div>
                         </div>
-                        <p>Sustainable eco-friendly lodge with bamboo architecture, organic garden, and authentic local experience.</p>
-                        <div class="hotel-amenities">
-                            <span class="amenity">🌱 Eco-friendly</span>
-                            <span class="amenity">🥬 Organic</span>
-                            <span class="amenity">🚲 Bike Tours</span>
-                            <span class="amenity">🧘 Yoga</span>
-                        </div>
-                        <button class="btn btn-primary" onclick="bookRoom('Bamboo Eco Lodge', 'Eco Bungalow', 45)">Book Now</button>
                     </div>
-                </div>
 
-                <!-- Hotel 6 -->
-                <div class="hotel-card">
-                    <div class="hotel-image">
-                        <div class="image-placeholder">🏰 Royal Heritage Hotel</div>
-                        <div class="hotel-price">$150/night</div>
-                    </div>
-                    <div class="hotel-content">
-                        <h3>Royal Heritage Hotel</h3>
-                        <div class="hotel-rating">
-                            ⭐⭐⭐⭐⭐ (4.9/5) - 412 reviews
-                        </div>
-                        <p>Luxury heritage hotel in a restored French colonial building with premium amenities and personalized service.</p>
-                        <div class="hotel-amenities">
-                            <span class="amenity">👑 Luxury</span>
-                            <span class="amenity">🏛️ Heritage</span>
-                            <span class="amenity">🛎️ Concierge</span>
-                            <span class="amenity">🚗 Transfer</span>
-                        </div>
-                        <button class="btn btn-primary" onclick="bookRoom('Royal Heritage Hotel', 'Presidential Suite', 150)">Book Now</button>
+                    <!-- Booking Form - Right -->
+                    <div style="padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                        <h3 style="text-align: center; color: #2c3e50; margin-bottom: 2rem; font-size: 1.8rem;">📝 Form Đặt Phòng</h3>
+                        <form id="bookingForm" style="display: flex; flex-direction: column; gap: 0.9rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Họ và tên <span style="color: red;">*</span>
+                                </label>
+                                <input type="text" name="fullName" required 
+                                       style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;" placeholder="Nhập họ và tên">
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Số điện thoại <span style="color: red;">*</span>
+                                </label>
+                                <input type="tel" name="phone" required 
+                                       style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;" placeholder="0912345678">
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Email
+                                </label>
+                                <input type="email" name="email" 
+                                       style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;" placeholder="email@example.com">
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Loại phòng <span style="color: red;">*</span>
+                                </label>
+                                <select name="roomType" required 
+                                        style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;">
+                                    <option value="">-- Chọn loại phòng --</option>
+                                    <optgroup label="🏰 Tòa Lầu Đài">
+                                        <option value="Phòng Đơn">Phòng Đơn (1 giường 1.8m x 2m)</option>
+                                        <option value="Phòng Đôi">Phòng Đôi (2 giường 1.8m x 2m)</option>
+                                        <option value="Phòng Cộng Đồng - Lầu Đài">Phòng Cộng Đồng (12 đệm đôi)</option>
+                                    </optgroup>
+                                    <optgroup label="🏡 Khu Phòng Cộng Đồng">
+                                        <option value="Khu A - Phòng 1">Khu A - Phòng 1 (20 khách)</option>
+                                        <option value="Khu A - Phòng 2">Khu A - Phòng 2 (20 khách)</option>
+                                        <option value="Khu B - Phòng 1">Khu B - Phòng 1 (25 khách)</option>
+                                        <option value="Khu B - Phòng 2">Khu B - Phòng 2 (12 khách)</option>
+                                        <option value="Khu B - Phòng 3">Khu B - Phòng 3 (12 khách)</option>
+                                        <option value="Khu B - Phòng 4">Khu B - Phòng 4 (12 khách)</option>
+                                        <option value="Khu B - Phòng 5">Khu B - Phòng 5 (12 khách)</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Loại hình thuê <span style="color: red;">*</span>
+                                </label>
+                                <select name="bookingType" required 
+                                        style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;">
+                                    <option value="">-- Chọn loại hình --</option>
+                                    <option value="Qua đêm">Qua đêm (Nhận sau 12h, trả 11h)</option>
+                                    <option value="Nghỉ trưa 3 tiếng">Nghỉ trưa 3 tiếng</option>
+                                    <option value="Trong ngày">Trong ngày (Nhận sau 12h, trả 17h)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Ngày nhận phòng <span style="color: red;">*</span>
+                                </label>
+                                <input type="date" name="checkIn" required 
+                                       style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;">
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                        Người lớn
+                                    </label>
+                                    <input type="number" name="adults" min="1" value="2" 
+                                           style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                        Trẻ em
+                                    </label>
+                                    <input type="number" name="children" min="0" value="0" 
+                                           style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem;">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Dịch vụ bổ sung
+                                </label>
+                                <div style="display: flex; flex-direction: column; gap: 0.3rem; padding: 0.6rem; background: #f8f9fa; border-radius: 5px; font-size: 0.85rem;">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="services" value="Vé xe điện (20,000đ/lượt)"> Vé xe điện
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="services" value="Vé trượt pháo (30,000đ/lượt)"> Vé trượt pháo
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="services" value="Teambuilding"> Teambuilding
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                        <input type="checkbox" name="services" value="Đốt lửa trại"> Đốt lửa trại
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.4rem; font-weight: 600; color: #2c3e50; font-size: 0.9rem;">
+                                    Ghi chú thêm
+                                </label>
+                                <textarea name="notes" rows="2" 
+                                          style="width: 100%; padding: 0.65rem; border: 2px solid #ddd; border-radius: 5px; font-size: 0.95rem; resize: vertical;" placeholder="Yêu cầu đặc biệt..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" 
+                                    style="width: 100%; padding: 0.85rem; font-size: 1.05rem; font-weight: 600; background: linear-gradient(135deg, #F5B041, #F39C12); border: none; border-radius: 5px; color: white; cursor: pointer; transition: all 0.3s ease; margin-top: 0.5rem;">
+                                📩 Gửi yêu cầu đặt phòng
+                            </button>
+
+                            <p style="text-align: center; font-size: 0.85rem; color: #666; margin: 0;">
+                                <em>Chúng tôi sẽ liên hệ lại trong vòng 24h</em>
+                            </p>
+                        </form>
                     </div>
                 </div>
+                
+                <style>
+                    @media (max-width: 968px) {
+                        .contact-form-grid {
+                            grid-template-columns: 1fr !important;
+                        }
+                    }
+                </style>
+            </div>
+
+            <!-- Gallery Preview -->
+            <div style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: #2c3e50; font-size: 1.8rem;">🖼️ Hình ảnh Khu Sinh Thái</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <img src="assets/images/6.jpg" alt="Gallery 1" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <img src="assets/images/7.jpg" alt="Gallery 2" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <img src="assets/images/8.jpg" alt="Gallery 3" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <img src="assets/images/9.jpg" alt="Gallery 4" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+
+            <div class="hotels-grid" style="display: none;">
+
             </div>
         </div>
     </section>
@@ -187,82 +322,29 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Hoi An Tourism</h3>
-                    <p>Your gateway to experiencing the authentic beauty of Vietnam's ancient town.</p>
+                    <h3>Du lịch Hòa Bình</h3>
+                    <p>Cổng thông tin du lịch và đặt phòng tại Khu Sinh Thái Nhà Tôi Hòa Bình.</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Liên kết nhanh</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="hotels.html">Hotels</a></li>
-                        <li><a href="attractions.html">Attractions</a></li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="attractions.html">Điểm đến</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p>📧 info@hoiantourism.vn</p>
-                    <p>📞 +84 235 123 456</p>
-                    <p>📍 Hoi An, Quang Nam, Vietnam</p>
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 +84 987 654 321</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Hoi An Tourism. All rights reserved.</p>
+                <p>&copy; 2024 Du lịch Hòa Bình. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Booking Modal -->
-    <div id="bookingModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeBookingModal()">&times;</span>
-            <div class="booking-form">
-                <h2>Book Your Room</h2>
-                <div id="selectedHotel">
-                    <h3 id="hotelName"></h3>
-                    <p><strong>Room Type:</strong> <span id="roomType"></span></p>
-                    <p><strong>Price:</strong> $<span id="roomPrice"></span>/night</p>
-                </div>
-                
-                <form onsubmit="handleBooking(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="checkInDate">Check-in Date:</label>
-                            <input type="date" id="checkInDate" name="checkInDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="checkOutDate">Check-out Date:</label>
-                            <input type="date" id="checkOutDate" name="checkOutDate" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="guests">Number of Guests:</label>
-                        <select id="guests" name="guests" required>
-                            <option value="">Select guests</option>
-                            <option value="1">1 Guest</option>
-                            <option value="2">2 Guests</option>
-                            <option value="3">3 Guests</option>
-                            <option value="4">4 Guests</option>
-                            <option value="5">5+ Guests</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="specialRequests">Special Requests (Optional):</label>
-                        <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Any special requests or preferences..."></textarea>
-                    </div>
-                    
-                    <div class="booking-summary">
-                        <h4>Booking Summary</h4>
-                        <p><strong>Total Nights:</strong> <span id="totalNights">0</span></p>
-                        <p><strong>Total Price:</strong> $<span id="totalPrice">0</span></p>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Confirm Booking</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- Authentication Modal -->
     <div id="authModal" class="modal">
@@ -271,30 +353,30 @@
             
             <!-- Login Form -->
             <div id="loginForm" class="auth-form">
-                <h2>Login</h2>
+                <h2>Đăng nhập</h2>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label for="loginEmail">Email:</label>
                         <input type="email" id="loginEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">Password:</label>
+                        <label for="loginPassword">Mật khẩu:</label>
                         <input type="password" id="loginPassword" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 </form>
                 <p class="auth-switch">
-                    Don't have an account? 
-                    <a href="#" onclick="showRegisterForm()">Register here</a>
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterForm()">Đăng ký tại đây</a>
                 </p>
             </div>
 
             <!-- Register Form -->
             <div id="registerForm" class="auth-form" style="display: none;">
-                <h2>Register</h2>
+                <h2>Đăng ký</h2>
                 <form onsubmit="handleRegister(event)">
                     <div class="form-group">
-                        <label for="registerUsername">Username:</label>
+                        <label for="registerUsername">Tên người dùng:</label>
                         <input type="text" id="registerUsername" name="username" required>
                     </div>
                     <div class="form-group">
@@ -302,14 +384,14 @@
                         <input type="email" id="registerEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="registerPassword">Password:</label>
+                        <label for="registerPassword">Mật khẩu:</label>
                         <input type="password" id="registerPassword" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
                 </form>
                 <p class="auth-switch">
-                    Already have an account? 
-                    <a href="#" onclick="showLoginForm()">Login here</a>
+                    Đã có tài khoản? 
+                    <a href="#" onclick="showLoginForm()">Đăng nhập tại đây</a>
                 </p>
             </div>
         </div>
@@ -320,20 +402,23 @@
         <div class="modal-content">
             <span class="close" onclick="closeDashboardModal()">&times;</span>
             <div id="userDashboard">
-                <h2>Welcome, <span id="username"></span>!</h2>
+                <h2>Xin chào, <span id="username"></span>!</h2>
                 <div class="dashboard-section">
-                    <h3>Your Bookings</h3>
+                    <h3>Đặt phòng của bạn</h3>
                     <div id="userBookings">
                         <!-- Bookings will be loaded here -->
                     </div>
                 </div>
-                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
             </div>
         </div>
     </div>
 
+    <script src="js/placeholder.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/booking.js"></script>
+    <script src="js/pricing.js"></script>
+    <script src="js/booking-form.js"></script>
     <script src="js/main.js"></script>
+    
 </body>
 </html>

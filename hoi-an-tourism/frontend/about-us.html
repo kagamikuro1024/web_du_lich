@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về Chúng Tôi - Khu Sinh Thái Nhà Tôi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Keep navbar transparent always on this page */
+        .navbar.navbar-transparent {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .navbar.navbar-transparent.scrolled {
+            background: rgba(255, 255, 255, 0.15) !important;
+        }
+        
+        .about-us-hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/images/main.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 10rem 0 6rem;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        .about-us-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .about-us-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: white;
+        }
+        .mission-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        @media (max-width: 1024px) {
+            .mission-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .mission-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .mission-card:hover {
+            transform: translateY(-10px);
+        }
+        .mission-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .mission-card h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 0.8rem;
+            border-radius: 8px;
+        }
+        .mission-card p {
+            color: #7f8c8d;
+            line-height: 1.8;
+        }
+        .values-section {
+            padding: 5rem 0;
+        }
+        .value-item {
+            background: white;
+            padding: 2rem;
+            border-left: 5px solid #3498db;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-radius: 0 10px 10px 0;
+        }
+        .value-item h3 {
+            color: #3498db;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .value-item p {
+            color: #555;
+            line-height: 1.8;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: #3498db;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">Giới thiệu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="restaurant.html" class="nav-link">Nhà hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link">Đặt phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">Tin tức & Khuyến mại</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us.html" class="nav-link active">Về chúng tôi</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-us-hero">
+        <div class="container">
+            <h1>🌿 Về Chúng Tôi</h1>
+            <p>
+                Khu Sinh Thái Nhà Tôi không chỉ là điểm đến du lịch, mà là nơi bạn tìm thấy sự bình yên, 
+                kết nối với thiên nhiên và cảm nhận được sự ấm áp như chính ngôi nhà của mình.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: #2c3e50;">Sứ Mệnh & Giá Trị Cốt Lõi</h2>
+                <p>Những nguyên tắc định hướng mọi hoạt động của chúng tôi</p>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">❤️</div>
+                    <h3>Khách hàng là trái tim</h3>
+                    <p>
+                        Chúng tôi lắng nghe từng cảm xúc, quan tâm đến từng chi tiết nhỏ để mang lại 
+                        những trải nghiệm cá nhân hóa, chân thật và đầy cảm xúc.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🤝</div>
+                    <h3>Gắn kết yêu thương</h3>
+                    <p>
+                        Mỗi chuyến đi đến Nhà Tôi là cơ hội để bạn gắn kết sâu sắc hơn với gia đình, 
+                        bạn bè và đồng nghiệp qua những khoảnh khắc đáng nhớ.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🌱</div>
+                    <h3>Phát triển bền vững</h3>
+                    <p>
+                        Chúng tôi cam kết bảo vệ môi trường sinh thái, sử dụng tài nguyên hợp lý và 
+                        đóng góp vào việc giữ gìn vẻ đẹp tự nhiên của Hòa Bình.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">✨</div>
+                    <h3>Tận tâm từng chi tiết</h3>
+                    <p>
+                        Từ cách chào đón, phục vụ đến từng món ăn, mỗi chi tiết đều được chăm chút kỹ 
+                        lưỡng với sự tận tâm và chân thành nhất.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🏡</div>
+                    <h3>Không gian ấm cúng</h3>
+                    <p>
+                        Tạo ra môi trường như ngôi nhà thứ hai, nơi bạn cảm thấy thoải mái, được chào đón 
+                        và thuộc về như chính mái ấm của mình.
+                    </p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>Chất lượng hàng đầu</h3>
+                    <p>
+                        Cam kết mang đến dịch vụ và trải nghiệm chất lượng cao nhất, luôn nỗ lực cải thiện 
+                        và đổi mới để đáp ứng kỳ vọng của khách hàng.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cam Kết Của Chúng Tôi</h2>
+                <p>Những điều chúng tôi hứa mang đến cho bạn</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>🏞️ Không Gian Xanh, Sạch & An Toàn</h3>
+                <p>
+                    Khu sinh thái được duy trì sạch sẽ, an toàn với hệ thống quản lý chất lượng cao. 
+                    Mọi khu vực đều được vệ sinh thường xuyên và tuân thủ nghiêm ngặt các tiêu chuẩn 
+                    về an toàn thực phẩm và môi trường.
+                </p>
+            </div>
+
+            <div class="value-item">
+                <h3>👨‍🍳 Ẩm Thực Sạch Từ Nguyên Liệu Địa Phương</h3>
+                <p>
+                    Thực đơn được chế biến từ các nguyên liệu tươi ngon, nguồn gốc rõ ràng từ nông 
+                    trại và làng quê địa phương. Mỗi món ăn đều mang đậm hương vị truyền thống và 
+                    tình yêu của người đầu bếp.
+                </p>
+            </div>
+
+            <div class="value-item">
+                <h3>🎯 Dịch Vụ Tận Tâm & Chu Đáo</h3>
+                <p>
+                    Đội ngũ nhân viên được đào tạo bài bản, luôn sẵn sàng phục vụ với thái độ nhiệt 
+                    tình và chuyên nghiệp. Chúng tôi cam kết mang đến trải nghiệm khách hàng xuất sắc 
+                    trong mỗi khoảnh khắc bạn lưu trú.
+                </p>
+            </div>
+
+            <div class="value-item">
+                <h3>💚 Trách Nhiệm Với Cộng Đồng</h3>
+                <p>
+                    Chúng tôi tạo việc làm cho người dân địa phương, hỗ trợ phát triển kinh tế cộng 
+                    đồng và tham gia các hoạt động xã hội ý nghĩa nhằm nâng cao chất lượng cuộc sống 
+                    cho người dân Hòa Bình.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>📞 Hãy Để Chúng Tôi Đồng Hành Cùng Bạn!</h2>
+            <p>
+                Dù bạn đến để nghỉ dưỡng, tổ chức sự kiện hay đơn giản là tìm kiếm một nơi bình yên 
+                giữa thiên nhiên – Khu Sinh Thái Nhà Tôi luôn sẵn sàng chào đón!
+            </p>
+            <a href="hotels.html" class="cta-button">Đặt Phòng Ngay</a>
+            <a href="news.html" class="cta-button" style="margin-left: 1rem; background: #f39c12; color: white;">Xem Ưu Đãi</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏡 Nhà Tôi - Hòa Bình</h3>
+                    <p>Khu Du Lịch Sinh Thái - Nghỉ dưỡng và Ẩm thực cao cấp</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="restaurant.html">Nhà hàng</a></li>
+                        <li><a href="news.html">Tin tức & Khuyến mại</a></li>
+                        <li><a href="about-us.html">Về chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 Hotline: 0964 233 100</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Khu Du Lịch Sinh Thái Nhà Tôi - Hòa Bình. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Đăng nhập</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Mật khẩu:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </form>
+                <p class="auth-switch">
+                    Chưa có tài khoản? 
+                    <a href="#" onclick="showRegisterForm()">Đăng ký tại đây</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2>Đăng ký</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerUsername">Tên người dùng:</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Mật khẩu:</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </form>
+                <p class="auth-switch">
+                    Đã có tài khoản? 
+                    <a href="#" onclick="showLoginForm()">Đăng nhập tại đây</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard Modal -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDashboardModal()">&times;</span>
+            <div id="userDashboard">
+                <h2>Xin chào, <span id="username"></span>!</h2>
+                <div class="dashboard-section">
+                    <h3>Đặt phòng của bạn</h3>
+                    <div id="userBookings">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/placeholder.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

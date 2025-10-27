@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám Phá Ẩm Thực Đặc Sản - Tin Tức</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .article-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/images/20.png');
+            background-size: cover;
+            background-position: center;
+            padding: 10rem 0 6rem;
+            text-align: center;
+            color: white;
+        }
+        .article-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .article-content {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .article-meta {
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .article-body {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        .article-body h2 {
+            color: #3498db;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #3498db;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+        .back-button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">Giới thiệu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="restaurant.html" class="nav-link">Nhà hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hotels.html" class="nav-link">Đặt phòng</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link active">Tin tức & Khuyến mại</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about-us.html" class="nav-link">Về chúng tôi</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="article-hero">
+        <div class="container">
+            <h1>Khám Phá Ẩm Thực Đặc Sản Vùng Núi</h1>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <div class="article-content">
+        <a href="news.html" class="back-button">← Quay lại</a>
+        
+        <div class="article-meta">
+            📅 Ngày đăng: 15/10/2025 | 👤 Tác giả: Ban biên tập
+        </div>
+
+        <div class="article-body">
+            <p>
+                <strong>Nhà Hàng Sinh Thái</strong> tại Khu Du Lịch Nhà Tôi tự hào mang đến thực đơn phong phú với 
+                các món ăn đặc sản núi rừng Hòa Bình, được chế biến từ nguyên liệu tươi ngon, sạch và an toàn.
+            </p>
+
+            <h2>🍽️ Triết Lý Ẩm Thực</h2>
+            <p>
+                Chúng tôi tin rằng ẩm thực không chỉ là đồ ăn mà còn là trải nghiệm văn hóa. Mỗi món ăn tại 
+                Nhà Hàng Sinh Thái đều được chế biến với tình yêu và sự tôn trọng đối với nguyên liệu địa phương, 
+                giữ nguyên hương vị truyền thống nhưng vẫn đảm bảo vệ sinh an toàn thực phẩm.
+            </p>
+
+            <h2>🐓 Điểm Nhấn Thực Đơn</h2>
+
+            <h3>1. Gà Đồi Thả Vườn</h3>
+            <p>
+                Gà được nuôi thả tự nhiên trên đồi, ăn cỏ và hạt, thịt săn chắc, thơm ngon. Có thể chế biến theo 
+                nhiều cách: hấp, nướng, luộc gừng, hoặc chiên giòn. Đặc biệt, món gà hấp lá gừng là signature dish 
+                được nhiều thực khách yêu thích.
+            </p>
+
+            <h3>2. Cá Suối Tươi Sống</h3>
+            <p>
+                Cá được đánh bắt trực tiếp từ suối trong khu sinh thái, đảm bảo độ tươi ngon tuyệt đối. 
+                Có thể chế biến theo kiểu chiên giòn, nướng muối ớt, hoặc lẩu cá chua cay. Thịt cá ngọt tự nhiên, 
+                không tanh, là món khoái khẩu của nhiều du khách.
+            </p>
+
+            <h3>3. Rau Rừng Hái Tươi</h3>
+            <p>
+                Các loại rau rừng như rau dớn, rau đắng, rau bò khai được hái tươi hàng ngày từ rừng gần khu sinh thái. 
+                Đây là những loại rau giàu dinh dưỡng, có vị đắng nhẹ đặc trưng và rất tốt cho sức khỏe. 
+                Thường được xào tỏi hoặc luộc chấm mắm tôm.
+            </p>
+
+            <h3>4. Thịt Lợn/Bò Sạch Địa Phương</h3>
+            <p>
+                Thịt lợn và bò được cung cấp từ các trang trại nhỏ uy tín trong vùng, đảm bảo chất lượng. 
+                Các món như bê tái chanh, thịt lợn nướng, hoặc bò xào măng đều được chế biến công phu, 
+                đậm đà hương vị núi rừng.
+            </p>
+
+            <h2>🔥 Đặc Sản BBQ Ngoài Trời</h2>
+            <p>
+                Ngoài các món ăn trong nhà, chúng tôi còn có khu BBQ ngoài trời với không gian mở, gần suối. 
+                Menu BBQ bao gồm:
+            </p>
+            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                <li>Ba chỉ bò Mỹ, ba chỉ heo</li>
+                <li>Sườn non, sườn cây</li>
+                <li>Cá suối nướng giấy bạc</li>
+                <li>Rau củ nướng: bắp, khoai lang, nấm</li>
+                <li>Mực, tôm nướng (theo mùa)</li>
+            </ul>
+            <p>
+                Đây là lựa chọn lý tưởng cho các nhóm bạn, gia đình muốn tổ chức tiệc ngoài trời, kết hợp với 
+                hoạt động teambuilding hoặc cắm trại.
+            </p>
+
+            <h2>👨‍🍳 Đầu Bếp Tâm Huyết</h2>
+            <p>
+                Đội ngũ đầu bếp của chúng tôi đều là người địa phương, am hiểu sâu sắc về ẩm thực truyền thống 
+                vùng núi Hòa Bình. Họ không chỉ chế biến món ăn mà còn truyền tải câu chuyện văn hóa qua từng 
+                món ăn, tạo ra trải nghiệm ẩm thực độc đáo và ý nghĩa.
+            </p>
+
+            <h2>🥗 Menu Chay & Món Ăn Theo Yêu Cầu</h2>
+            <p>
+                Chúng tôi cũng phục vụ menu chay đa dạng và có thể tùy chỉnh món ăn theo yêu cầu riêng của khách 
+                (ăn kiêng, dị ứng, trẻ em...). Vui lòng thông báo trước khi đặt bàn để chúng tôi chuẩn bị tốt nhất.
+            </p>
+
+            <h2>💰 Mức Giá Tham Khảo</h2>
+            <p>
+                Nhà hàng có 4 menu set dành cho nhóm, giá từ 1,150,000 - 1,400,000 VNĐ/bàn (10 người). 
+                Ngoài ra còn có menu à la carte với các món đơn lẻ, phù hợp cho nhóm nhỏ hoặc gia đình.
+            </p>
+            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                <li><strong>Menu 1:</strong> 1,150,000 VNĐ (15 món)</li>
+                <li><strong>Menu 2:</strong> 1,200,000 VNĐ (9 món)</li>
+                <li><strong>Menu 3:</strong> 1,300,000 VNĐ (16 món)</li>
+                <li><strong>Menu 4:</strong> 1,400,000 VNĐ (12 món)</li>
+            </ul>
+
+            <h2>⏰ Giờ Phục Vụ</h2>
+            <p>
+                <strong>Bữa sáng:</strong> 7:00 - 9:00<br>
+                <strong>Bữa trưa:</strong> 11:00 - 14:00<br>
+                <strong>Bữa tối:</strong> 17:00 - 21:00<br>
+                <strong>BBQ ngoài trời:</strong> Theo đặt trước
+            </p>
+
+            <h2>📞 Đặt Bàn</h2>
+            <p>
+                Để đảm bảo có chỗ ngồi tốt nhất, đặc biệt vào cuối tuần và ngày lễ, vui lòng đặt bàn trước:<br>
+                📞 <strong>Hotline: 0964 233 100</strong><br>
+                📧 <strong>Email: nhatoihoabinh@gmail.com</strong>
+            </p>
+
+            <p style="margin-top: 3rem; padding: 2rem; background: #f8f9fa; border-left: 5px solid #3498db; border-radius: 5px;">
+                <strong>🎁 Ưu đãi:</strong> Khách lưu trú tại khu sinh thái được giảm 10% khi sử dụng dịch vụ nhà hàng. 
+                Đặt tiệc từ 5 bàn trở lên được tặng kèm 1 món tráng miệng đặc biệt!
+            </p>
+        </div>
+
+        <a href="news.html" class="back-button">← Quay lại Tin tức</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 4rem;">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏡 Nhà Tôi - Hòa Bình</h3>
+                    <p>Khu Du Lịch Sinh Thái - Nghỉ dưỡng và Ẩm thực cao cấp</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="hotels.html">Đặt phòng</a></li>
+                        <li><a href="restaurant.html">Nhà hàng</a></li>
+                        <li><a href="news.html">Tin tức & Khuyến mại</a></li>
+                        <li><a href="about-us.html">Về chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Thông tin liên hệ</h4>
+                    <p>📧 nhatoihoabinh@gmail.com</p>
+                    <p>📞 Hotline: 0964 233 100</p>
+                    <p>📍 Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Khu Du Lịch Sinh Thái Nhà Tôi - Hòa Bình. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/placeholder.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
