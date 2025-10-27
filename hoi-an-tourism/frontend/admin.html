@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Trị - Khu Sinh Thái Nhà Tôi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Admin Login Styles */
+        .admin-login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .admin-login-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        .admin-login-box h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        .admin-login-box .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .admin-login-box label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #34495e;
+            font-weight: 500;
+        }
+        .admin-login-box input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .admin-login-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .admin-login-box .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .admin-login-box .btn-login:hover {
+            transform: translateY(-2px);
+        }
+        .admin-login-error {
+            background: #fee;
+            color: #c33;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            text-align: center;
+        }
+        
+        /* Main Admin Container */
+        .admin-container {
+            max-width: 1400px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+            display: none;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+        .stat-card p {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        .admin-tab {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .admin-tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        .admin-tab:hover {
+            color: #2980b9;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .bookings-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            overflow-y: visible;
+        }
+        .table-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 60px 150px 200px 120px 120px 180px 120px 200px;
+            gap: 0.8rem;
+            font-weight: bold;
+            min-width: 1100px;
+            font-size: 0.9rem;
+        }
+        .table-row {
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 60px 150px 200px 120px 120px 180px 120px 200px;
+            gap: 0.8rem;
+            border-bottom: 1px solid #ecf0f1;
+            align-items: center;
+            min-width: 1100px;
+            font-size: 0.9rem;
+        }
+        .table-row:hover {
+            background: #f8f9fa;
+        }
+        .table-row > div {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.4;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .status-pending {
+            background: #f39c12;
+            color: white;
+        }
+        .status-confirmed {
+            background: #27ae60;
+            color: white;
+        }
+        .status-cancelled {
+            background: #e74c3c;
+            color: white;
+        }
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            margin: 0.2rem;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        .btn-approve {
+            background: #27ae60;
+            color: white;
+        }
+        .btn-approve:hover {
+            background: #229954;
+        }
+        .btn-cancel {
+            background: #e74c3c;
+            color: white;
+        }
+        .btn-cancel:hover {
+            background: #c0392b;
+        }
+        .btn-view {
+            background: #3498db;
+            color: white;
+        }
+        .btn-view:hover {
+            background: #2980b9;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .search-box {
+            margin-bottom: 1.5rem;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .filter-section select {
+            padding: 0.8rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #7f8c8d;
+        }
+        .customers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .customer-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .customer-card h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .customer-info {
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Login Page -->
+    <div id="adminLoginPage" class="admin-login-container">
+        <div class="admin-login-box">
+            <h2>🔐 Đăng Nhập Admin</h2>
+            <div class="admin-login-error" id="loginError"></div>
+            <form id="adminLoginForm" onsubmit="adminLogin(event)">
+                <div class="form-group">
+                    <label for="adminUsername">Tên đăng nhập</label>
+                    <input type="text" id="adminUsername" required value="admin">
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Mật khẩu</label>
+                    <input type="password" id="adminPassword" required>
+                </div>
+                <button type="submit" class="btn-login">Đăng Nhập</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="adminNavbar" style="display: none;">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h2>🏡 Nhà Tôi - Hòa Bình</h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link active">Quản trị</a>
+                </li>
+                <li class="nav-item" id="auth-nav">
+                    <a href="#" class="nav-link" onclick="logout()">Đăng xuất</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <!-- Header -->
+        <div class="admin-header">
+            <h1>🎛️ Trang Quản Trị</h1>
+            <p>Quản lý đặt phòng, khách hàng và thống kê</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="totalBookings">0</h3>
+                <p>📋 Tổng Đặt Phòng</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="pendingBookings">0</h3>
+                <p>⏳ Chờ Xác Nhận</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="confirmedBookings">0</h3>
+                <p>✅ Đã Xác Nhận</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalRevenue">0 VNĐ</h3>
+                <p>💰 Doanh Thu</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="admin-tabs">
+            <div class="admin-tab active" onclick="showAdminTab('bookings')">Đặt Phòng</div>
+            <div class="admin-tab" onclick="showAdminTab('customers')">Khách Hàng</div>
+        </div>
+
+        <!-- Bookings Tab -->
+        <div id="bookings" class="tab-content active">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm theo tên, email, số điện thoại..." onkeyup="filterBookings()">
+            </div>
+
+            <div class="filter-section">
+                <select id="statusFilter" onchange="filterBookings()">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="pending">Chờ xác nhận</option>
+                    <option value="confirmed">Đã xác nhận</option>
+                    <option value="cancelled">Đã hủy</option>
+                </select>
+
+                <select id="roomTypeFilter" onchange="filterBookings()">
+                    <option value="">Tất cả loại phòng</option>
+                    <option value="standard">Standard</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="suite">Suite</option>
+                    <option value="family">Family</option>
+                </select>
+
+                <button class="btn btn-primary" onclick="loadBookings()">🔄 Làm mới</button>
+            </div>
+
+            <div class="bookings-table">
+                <div class="table-header">
+                    <div>ID</div>
+                    <div>Khách Hàng</div>
+                    <div>Liên Hệ</div>
+                    <div>Nhận Phòng</div>
+                    <div>Trả Phòng</div>
+                    <div>Loại Phòng</div>
+                    <div>Trạng Thái</div>
+                    <div>Hành Động</div>
+                </div>
+                <div id="bookingsTableBody">
+                    <div class="no-data">Đang tải dữ liệu...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customers Tab -->
+        <div id="customers" class="tab-content">
+            <div class="search-box">
+                <input type="text" id="customerSearchInput" placeholder="🔍 Tìm kiếm khách hàng..." onkeyup="filterCustomers()">
+            </div>
+            <div id="customersGrid" class="customers-grid">
+                <div class="no-data">Đang tải dữ liệu...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/placeholder.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const API_BASE_URL = 'http://localhost:3000';
+        let allBookings = [];
+        let allCustomers = [];
+
+        // Admin login
+        async function adminLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Đăng nhập thất bại');
+                }
+
+                // Save token and user info
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                // Check if user is admin
+                if (username !== 'admin') {
+                    errorDiv.textContent = 'Chỉ tài khoản admin mới được truy cập!';
+                    errorDiv.style.display = 'block';
+                    localStorage.clear();
+                    return;
+                }
+
+                // Show admin panel
+                document.getElementById('adminLoginPage').style.display = 'none';
+                document.getElementById('adminNavbar').style.display = 'block';
+                document.querySelector('.admin-container').style.display = 'block';
+                
+                // Load data
+                loadBookings();
+            } catch (error) {
+                errorDiv.textContent = 'Sai tên đăng nhập hoặc mật khẩu!';
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Check admin authentication on page load
+        function checkAdminAuth() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            if (token && user) {
+                const userData = JSON.parse(user);
+                if (userData.username === 'admin') {
+                    // Already logged in as admin
+                    document.getElementById('adminLoginPage').style.display = 'none';
+                    document.getElementById('adminNavbar').style.display = 'block';
+                    document.querySelector('.admin-container').style.display = 'block';
+                    loadBookings();
+                    return true;
+                }
+            }
+            
+            // Show login page
+            document.getElementById('adminLoginPage').style.display = 'flex';
+            return false;
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Bạn có chắc muốn đăng xuất?')) {
+                localStorage.clear();
+                window.location.reload();
+            }
+        }
+
+        // Tab switching
+        function showAdminTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Load data for tab
+            if (tabName === 'bookings') {
+                loadBookings();
+            } else if (tabName === 'customers') {
+                loadCustomers();
+            }
+        }
+
+        // Load all bookings
+        async function loadBookings() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${API_BASE_URL}/api/admin/bookings`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Không thể tải danh sách đặt phòng');
+                }
+
+                allBookings = await response.json();
+                displayBookings(allBookings);
+                updateStats(allBookings);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('bookingsTableBody').innerHTML = 
+                    '<div class="no-data">❌ Lỗi: ' + error.message + '</div>';
+            }
+        }
+
+        // Display bookings
+        function displayBookings(bookings) {
+            const tbody = document.getElementById('bookingsTableBody');
+            
+            if (bookings.length === 0) {
+                tbody.innerHTML = '<div class="no-data">Không có đặt phòng nào</div>';
+                return;
+            }
+
+            tbody.innerHTML = bookings.map(booking => `
+                <div class="table-row">
+                    <div>#${booking.id}</div>
+                    <div>${booking.name || 'N/A'}</div>
+                    <div>
+                        📧 ${booking.email || 'N/A'}<br>
+                        📞 ${booking.phone || 'null'}
+                    </div>
+                    <div>${formatDate(booking.checkin_date)}</div>
+                    <div>${formatDate(booking.checkout_date)}</div>
+                    <div>${getRoomTypeName(booking.room_type)}<br>(${booking.num_rooms || 1} phòng)</div>
+                    <div>
+                        <span class="status-badge status-${booking.status}">
+                            ${getStatusName(booking.status)}
+                        </span>
+                    </div>
+                    <div class="action-buttons">
+                        ${booking.status === 'pending' ? `
+                            <button class="action-btn btn-approve" onclick="updateBookingStatus(${booking.id}, 'confirmed')">✓ Xác nhận</button>
+                            <button class="action-btn btn-cancel" onclick="updateBookingStatus(${booking.id}, 'cancelled')">✗ Hủy</button>
+                        ` : `
+                            <button class="action-btn btn-view" onclick="viewBookingDetail(${booking.id})">👁 Xem</button>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update booking status
+        async function updateBookingStatus(bookingId, newStatus) {
+            if (!confirm(`Xác nhận ${newStatus === 'confirmed' ? 'xác nhận' : 'hủy'} đặt phòng #${bookingId}?`)) {
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${API_BASE_URL}/api/admin/bookings/${bookingId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Không thể cập nhật trạng thái');
+                }
+
+                alert('Cập nhật thành công!');
+                loadBookings();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        // View booking detail
+        function viewBookingDetail(bookingId) {
+            const booking = allBookings.find(b => b.id === bookingId);
+            if (!booking) return;
+
+            const detail = `
+📋 CHI TIẾT ĐẶT PHÒNG #${booking.id}
+
+👤 Khách hàng: ${booking.name}
+📧 Email: ${booking.email}
+📞 Điện thoại: ${booking.phone}
+
+📅 Nhận phòng: ${formatDate(booking.checkin_date)}
+📅 Trả phòng: ${formatDate(booking.checkout_date)}
+
+🏠 Loại phòng: ${getRoomTypeName(booking.room_type)}
+🔢 Số phòng: ${booking.num_rooms}
+💰 Tổng tiền: ${formatCurrency(booking.total_price)}
+
+📝 Ghi chú: ${booking.special_requests || 'Không có'}
+📊 Trạng thái: ${getStatusName(booking.status)}
+🕐 Đặt lúc: ${new Date(booking.created_at).toLocaleString('vi-VN')}
+            `;
+            
+            alert(detail);
+        }
+
+        // Filter bookings
+        function filterBookings() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const roomTypeFilter = document.getElementById('roomTypeFilter').value;
+
+            const filtered = allBookings.filter(booking => {
+                const matchSearch = booking.name.toLowerCase().includes(searchTerm) ||
+                                   booking.email.toLowerCase().includes(searchTerm) ||
+                                   booking.phone.includes(searchTerm);
+                const matchStatus = !statusFilter || booking.status === statusFilter;
+                const matchRoomType = !roomTypeFilter || booking.room_type === roomTypeFilter;
+                
+                return matchSearch && matchStatus && matchRoomType;
+            });
+
+            displayBookings(filtered);
+        }
+
+        // Load customers
+        async function loadCustomers() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`${API_BASE_URL}/api/admin/customers`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Không thể tải danh sách khách hàng');
+                }
+
+                allCustomers = await response.json();
+                displayCustomers(allCustomers);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('customersGrid').innerHTML = 
+                    '<div class="no-data">❌ Lỗi: ' + error.message + '</div>';
+            }
+        }
+
+        // Display customers
+        function displayCustomers(customers) {
+            const grid = document.getElementById('customersGrid');
+            
+            if (customers.length === 0) {
+                grid.innerHTML = '<div class="no-data">Không có khách hàng nào</div>';
+                return;
+            }
+
+            grid.innerHTML = customers.map(customer => `
+                <div class="customer-card">
+                    <h4>👤 ${customer.username}</h4>
+                    <div class="customer-info">📧 ${customer.email}</div>
+                    <div class="customer-info">📅 Đăng ký: ${new Date(customer.created_at).toLocaleDateString('vi-VN')}</div>
+                    <div class="customer-info">📋 Số đơn đặt: ${customer.booking_count || 0}</div>
+                </div>
+            `).join('');
+        }
+
+        // Filter customers
+        function filterCustomers() {
+            const searchTerm = document.getElementById('customerSearchInput').value.toLowerCase();
+            const filtered = allCustomers.filter(customer => 
+                customer.username.toLowerCase().includes(searchTerm) ||
+                customer.email.toLowerCase().includes(searchTerm)
+            );
+            displayCustomers(filtered);
+        }
+
+        // Update statistics
+        function updateStats(bookings) {
+            const total = bookings.length;
+            const pending = bookings.filter(b => b.status === 'pending').length;
+            const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+            const revenue = bookings
+                .filter(b => b.status === 'confirmed')
+                .reduce((sum, b) => sum + b.total_price, 0);
+
+            document.getElementById('totalBookings').textContent = total;
+            document.getElementById('pendingBookings').textContent = pending;
+            document.getElementById('confirmedBookings').textContent = confirmed;
+            document.getElementById('totalRevenue').textContent = formatCurrency(revenue);
+        }
+
+        // Helper functions
+        function formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString('vi-VN');
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('vi-VN', { 
+                style: 'currency', 
+                currency: 'VND' 
+            }).format(amount);
+        }
+
+        function getStatusName(status) {
+            const names = {
+                'pending': 'Chờ xác nhận',
+                'confirmed': 'Đã xác nhận',
+                'cancelled': 'Đã hủy'
+            };
+            return names[status] || status;
+        }
+
+        function getRoomTypeName(type) {
+            const names = {
+                'standard': 'Standard',
+                'deluxe': 'Deluxe',
+                'suite': 'Suite',
+                'family': 'Family'
+            };
+            return names[type] || type;
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            checkAdminAuth();
+        });
+    </script>
+</body>
+</html>

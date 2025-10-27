@@ -134,6 +134,66 @@ app.get('/news-detail-3.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/news-detail-3.html'));
 });
 
+app.get('/admin.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/admin.html'));
+});
+
+// Admin API Routes
+// Get all bookings (Admin only)
+app.get('/api/admin/bookings', authenticateToken, (req, res) => {
+    db.all('SELECT * FROM bookings ORDER BY booking_date DESC', [], (err, bookings) => {
+        if (err) {
+            console.error('Error fetching bookings:', err);
+            return res.status(500).json({ error: 'Lỗi khi lấy danh sách đặt phòng' });
+        }
+        res.json(bookings);
+    });
+});
+
+// Update booking status (Admin only)
+app.patch('/api/admin/bookings/:id', authenticateToken, (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    
+    if (!['pending', 'confirmed', 'cancelled'].includes(status)) {
+        return res.status(400).json({ error: 'Trạng thái không hợp lệ' });
+    }
+    
+    db.run(
+        'UPDATE bookings SET status = ? WHERE id = ?',
+        [status, id],
+        function(err) {
+            if (err) {
+                return res.status(500).json({ error: 'Lỗi khi cập nhật trạng thái' });
+            }
+            if (this.changes === 0) {
+                return res.status(404).json({ error: 'Không tìm thấy đặt phòng' });
+            }
+            res.json({ message: 'Cập nhật thành công', bookingId: id, status });
+        }
+    );
+});
+
+// Get all customers with booking count (Admin only)
+app.get('/api/admin/customers', authenticateToken, (req, res) => {
+    const query = `
+        SELECT u.*, COUNT(b.id) as booking_count
+        FROM users u
+        LEFT JOIN bookings b ON u.id = b.user_id
+        GROUP BY u.id
+        ORDER BY u.created_at DESC
+    `;
+    
+    db.all(query, [], (err, customers) => {
+        if (err) {
+            return res.status(500).json({ error: 'Lỗi khi lấy danh sách khách hàng' });
+        }
+        // Remove password from response
+        const sanitizedCustomers = customers.map(({ password, ...customer }) => customer);
+        res.json(sanitizedCustomers);
+    });
+});
+
 // User Registration
 app.post('/api/register', async (req, res) => {
     try {
@@ -181,29 +241,31 @@ app.post('/api/register', async (req, res) => {
 // User Login
 app.post('/api/login', (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, username, password } = req.body;
+        const loginIdentifier = username || email; // Support both username and email
 
-        if (!email || !password) {
-            return res.status(400).json({ message: 'Email and password are required' });
+        if (!loginIdentifier || !password) {
+            return res.status(400).json({ message: 'Username/Email and password are required' });
         }
 
-        // Find user in database
+        // Find user in database by username or email
         db.get(
-            'SELECT * FROM users WHERE email = ?',
-            [email],
+            'SELECT * FROM users WHERE email = ? OR username = ?',
+            [loginIdentifier, loginIdentifier],
             async (err, user) => {
                 if (err) {
+                    console.error('Database error:', err);
                     return res.status(500).json({ message: 'Database error' });
                 }
 
                 if (!user) {
-                    return res.status(401).json({ message: 'Invalid email or password' });
+                    return res.status(401).json({ message: 'Invalid username/email or password' });
                 }
 
                 // Compare password
                 const isPasswordValid = await bcrypt.compare(password, user.password);
                 if (!isPasswordValid) {
-                    return res.status(401).json({ message: 'Invalid email or password' });
+                    return res.status(401).json({ message: 'Invalid username/email or password' });
                 }
 
                 const token = jwt.sign(
@@ -220,6 +282,7 @@ app.post('/api/login', (req, res) => {
             }
         );
     } catch (error) {
+        console.error('Login error:', error);
         res.status(500).json({ message: 'Server error' });
     }
 });
@@ -227,7 +290,7 @@ app.post('/api/login', (req, res) => {
 // Create Booking
 app.post('/api/bookings', authenticateToken, (req, res) => {
     try {
-        const { hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests } = req.body;
+        const { hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, name, email, phone, numRooms } = req.body;
         const userId = req.user.userId;
 
         // Validate input
@@ -235,25 +298,47 @@ app.post('/api/bookings', authenticateToken, (req, res) => {
             return res.status(400).json({ message: 'All required fields must be provided' });
         }
 
-        db.run(
-            `INSERT INTO bookings (user_id, hotel_name, room_type, check_in_date, check_out_date, 
-             guests, total_price, special_requests) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-            [userId, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests || ''],
-            function(err) {
-                if (err) {
-                    return res.status(500).json({ message: 'Error creating booking' });
+        // Get user info if name/email not provided
+        if (!name || !email) {
+            db.get('SELECT username, email FROM users WHERE id = ?', [userId], (err, user) => {
+                if (err || !user) {
+                    return res.status(500).json({ message: 'Error fetching user info' });
                 }
-
-                res.status(201).json({
-                    message: 'Booking created successfully',
-                    bookingId: this.lastID
-                });
-            }
-        );
+                
+                const bookingName = name || user.username;
+                const bookingEmail = email || user.email;
+                
+                insertBooking(userId, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, bookingName, bookingEmail, phone, numRooms, res);
+            });
+        } else {
+            insertBooking(userId, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, name, email, phone, numRooms, res);
+        }
     } catch (error) {
+        console.error('Booking error:', error);
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+function insertBooking(userId, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, name, email, phone, numRooms, res) {
+    db.run(
+        `INSERT INTO bookings (user_id, hotel_name, room_type, check_in_date, check_out_date, 
+         checkin_date, checkout_date, guests, total_price, special_requests, name, email, phone, 
+         num_rooms, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [userId, hotelName, roomType, checkInDate, checkOutDate, checkInDate, checkOutDate, 
+         guests, totalPrice, specialRequests || '', name, email, phone || '', numRooms || 1, 'pending'],
+        function(err) {
+            if (err) {
+                console.error('Insert booking error:', err);
+                return res.status(500).json({ message: 'Error creating booking' });
+            }
+
+            res.status(201).json({
+                message: 'Booking created successfully',
+                bookingId: this.lastID
+            });
+        }
+    );
+}
 
 // Get User Bookings
 app.get('/api/bookings', authenticateToken, (req, res) => {
