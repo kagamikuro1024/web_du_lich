@@ -5,11 +5,23 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // In production, use environment variable
+
+// Email configuration
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
+
+console.log('✅ Email service ready with:', process.env.EMAIL_USER);
 
 // Import booking routes
 const bookingRoutes = require('./routes/booking');
@@ -290,28 +302,47 @@ app.post('/api/login', (req, res) => {
 // Create Booking
 app.post('/api/bookings', authenticateToken, (req, res) => {
     try {
-        const { hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, name, email, phone, numRooms } = req.body;
+        const { hotelName, roomType, bookingType, checkInDate, checkOutDate, guests, adults, children, services, totalPrice, specialRequests, name, email, phone, numRooms } = req.body;
         const userId = req.user.userId;
 
-        // Validate input
-        if (!hotelName || !roomType || !checkInDate || !checkOutDate || !guests || !totalPrice) {
+        // Validate input - chỉ kiểm tra các trường bắt buộc
+        if (!hotelName || !roomType || !checkInDate || !name || !phone) {
             return res.status(400).json({ message: 'All required fields must be provided' });
         }
+        
+        // Tính giá tự động nếu không có
+        let finalTotalPrice = totalPrice || 0;
+        if (!finalTotalPrice || finalTotalPrice === 0) {
+            // Bảng giá mặc định
+            const roomPrices = {
+                'Phòng Đơn': 500000,
+                'Phòng Đôi': 700000,
+                'Phòng Cộng Đồng - Lầu Đài': 300000,
+                'Khu A - Phòng 1': 1500000,
+                'Khu A - Phòng 2': 1500000,
+                'Khu B - Phòng 1': 1800000,
+                'Khu B - Phòng 2': 1000000,
+                'Khu B - Phòng 3': 1000000,
+                'Khu B - Phòng 4': 1000000,
+                'Khu B - Phòng 5': 1000000
+            };
+            
+            finalTotalPrice = roomPrices[roomType] || 500000;
+        }
 
-        // Get user info if name/email not provided
-        if (!name || !email) {
+        // Get user info if email not provided
+        if (!email) {
             db.get('SELECT username, email FROM users WHERE id = ?', [userId], (err, user) => {
                 if (err || !user) {
                     return res.status(500).json({ message: 'Error fetching user info' });
                 }
                 
-                const bookingName = name || user.username;
-                const bookingEmail = email || user.email;
+                const bookingEmail = user.email;
                 
-                insertBooking(userId, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, bookingName, bookingEmail, phone, numRooms, res);
+                insertBooking(userId, hotelName, roomType, bookingType, checkInDate, checkOutDate, guests, adults, children, services, finalTotalPrice, specialRequests, name, bookingEmail, phone, numRooms, res);
             });
         } else {
-            insertBooking(userId, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, name, email, phone, numRooms, res);
+            insertBooking(userId, hotelName, roomType, bookingType, checkInDate, checkOutDate, guests, adults, children, services, finalTotalPrice, specialRequests, name, email, phone, numRooms, res);
         }
     } catch (error) {
         console.error('Booking error:', error);
@@ -319,25 +350,185 @@ app.post('/api/bookings', authenticateToken, (req, res) => {
     }
 });
 
-function insertBooking(userId, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, specialRequests, name, email, phone, numRooms, res) {
+function insertBooking(userId, hotelName, roomType, bookingType, checkInDate, checkOutDate, guests, adults, children, services, totalPrice, specialRequests, name, email, phone, numRooms, res) {
+    const depositAmount = totalPrice * 0.5; // 50% deposit
+    
+    // Tạo note kết hợp special requests và thông tin bổ sung
+    let fullNotes = [];
+    if (bookingType) fullNotes.push(`Loại hình: ${bookingType}`);
+    if (adults) fullNotes.push(`Người lớn: ${adults}`);
+    if (children) fullNotes.push(`Trẻ em: ${children}`);
+    if (services) fullNotes.push(`Dịch vụ: ${services}`);
+    if (specialRequests) fullNotes.push(specialRequests);
+    const combinedNotes = fullNotes.join(' | ');
+    
     db.run(
         `INSERT INTO bookings (user_id, hotel_name, room_type, check_in_date, check_out_date, 
-         checkin_date, checkout_date, guests, total_price, special_requests, name, email, phone, 
-         num_rooms, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         checkin_date, checkout_date, guests, total_price, deposit_amount, special_requests, name, email, phone, 
+         num_rooms, status, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [userId, hotelName, roomType, checkInDate, checkOutDate, checkInDate, checkOutDate, 
-         guests, totalPrice, specialRequests || '', name, email, phone || '', numRooms || 1, 'pending'],
+         guests, totalPrice, depositAmount, combinedNotes, name, email, phone || '', numRooms || 1, 'pending', 'unpaid'],
         function(err) {
             if (err) {
                 console.error('Insert booking error:', err);
                 return res.status(500).json({ message: 'Error creating booking' });
             }
 
+            const bookingId = this.lastID;
+            
+            // Send confirmation emails
+            sendBookingEmails(bookingId, {
+                name, email, hotelName, roomType, bookInDate: checkInDate, checkOutDate, 
+                guests, totalPrice, depositAmount, specialRequests: combinedNotes, numRooms: numRooms || 1,
+                bookingType, adults, children, services
+            });
+
             res.status(201).json({
                 message: 'Booking created successfully',
-                bookingId: this.lastID
+                bookingId: bookingId,
+                totalPrice: totalPrice,
+                depositAmount: depositAmount,
+                depositPercentage: 50
             });
         }
     );
+}
+
+// Send booking confirmation emails
+function sendBookingEmails(bookingId, bookingData) {
+    const { name, email, hotelName, roomType, checkInDate, checkOutDate, guests, totalPrice, depositAmount, specialRequests, numRooms } = bookingData;
+    
+    // Email to customer
+    const customerMailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: `🏡 Xác nhận đặt phòng #${bookingId} - Khu Sinh Thái Nhà Tôi`,
+        html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                <h2 style="color: #3498db; text-align: center;">🏡 Khu Sinh Thái Nhà Tôi - Hòa Bình</h2>
+                <h3 style="color: #2c3e50;">Xác Nhận Đặt Phòng</h3>
+                
+                <p>Xin chào <strong>${name}</strong>,</p>
+                <p>Cảm ơn bạn đã đặt phòng tại <strong>Khu Sinh Thái Nhà Tôi</strong>. Dưới đây là thông tin đặt phòng của bạn:</p>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #3498db; margin-top: 0;">📋 Thông Tin Đặt Phòng</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr><td style="padding: 8px 0;"><strong>Mã đặt phòng:</strong></td><td>#${bookingId}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Khách sạn:</strong></td><td>${hotelName}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Loại phòng:</strong></td><td>${roomType}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Số phòng:</strong></td><td>${numRooms} phòng</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Số khách:</strong></td><td>${guests} người</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Ngày nhận phòng:</strong></td><td>${new Date(checkInDate).toLocaleDateString('vi-VN')}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Ngày trả phòng:</strong></td><td>${new Date(checkOutDate).toLocaleDateString('vi-VN')}</td></tr>
+                        ${specialRequests ? `<tr><td style="padding: 8px 0;"><strong>Yêu cầu đặc biệt:</strong></td><td>${specialRequests}</td></tr>` : ''}
+                    </table>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #856404; margin-top: 0;">💰 Thông Tin Thanh Toán</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr><td style="padding: 8px 0;"><strong>Tổng giá:</strong></td><td style="font-size: 18px; color: #2c3e50;"><strong>${totalPrice.toLocaleString('vi-VN')} VNĐ</strong></td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Tiền đặt cọc (50%):</strong></td><td style="font-size: 20px; color: #e74c3c;"><strong>${depositAmount.toLocaleString('vi-VN')} VNĐ</strong></td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Còn lại:</strong></td><td style="font-size: 18px; color: #27ae60;"><strong>${(totalPrice - depositAmount).toLocaleString('vi-VN')} VNĐ</strong></td></tr>
+                    </table>
+                    <p style="margin: 15px 0 0 0; font-size: 14px; color: #856404;">
+                        <strong>⚠️ Lưu ý:</strong> Theo quy định, quý khách vui lòng thanh toán <strong>50% tiền đặt cọc</strong> 
+                        để giữ phòng. Số tiền còn lại sẽ được thanh toán khi nhận phòng.
+                    </p>
+                </div>
+                
+                <div style="background: #d1ecf1; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #17a2b8;">
+                    <p style="margin: 0; color: #0c5460;">
+                        <strong>📞 Liên hệ:</strong><br>
+                        Nếu cần hỗ trợ, vui lòng liên hệ:<br>
+                        📧 Email: support@nhatoi-hoabinh.vn<br>
+                        📱 Hotline: 0123 456 789<br>
+                        📍 Địa chỉ: Xóm Ngành, xã Liên Sơn, huyện Lương Sơn, tỉnh Hòa Bình
+                    </p>
+                </div>
+                
+                <p style="text-align: center; color: #7f8c8d; margin-top: 30px;">
+                    Cảm ơn bạn đã tin tưởng và lựa chọn Khu Sinh Thái Nhà Tôi!<br>
+                    Chúng tôi rất mong được phục vụ bạn! 🌿
+                </p>
+            </div>
+        `
+    };
+
+    // Email to admin
+    const adminMailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+        subject: `🔔 Đơn đặt phòng mới #${bookingId} - Cần xác nhận`,
+        html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                <h2 style="color: #e74c3c; text-align: center;">🔔 ĐƠN ĐẶT PHÒNG MỚI</h2>
+                
+                <div style="background: #ffe5e5; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #e74c3c;">
+                    <p style="margin: 0; color: #c0392b; font-size: 16px;">
+                        <strong>⚠️ Có đơn đặt phòng mới cần xác nhận!</strong>
+                    </p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #3498db; margin-top: 0;">👤 Thông Tin Khách Hàng</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr><td style="padding: 8px 0;"><strong>Họ tên:</strong></td><td>${name}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Email:</strong></td><td>${email}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Số điện thoại:</strong></td><td>${bookingData.phone || 'Chưa cung cấp'}</td></tr>
+                    </table>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #3498db; margin-top: 0;">📋 Chi Tiết Đặt Phòng</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr><td style="padding: 8px 0;"><strong>Mã booking:</strong></td><td>#${bookingId}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Khách sạn:</strong></td><td>${hotelName}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Loại phòng:</strong></td><td>${roomType}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Số phòng:</strong></td><td>${numRooms} phòng</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Số khách:</strong></td><td>${guests} người</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Check-in:</strong></td><td>${new Date(checkInDate).toLocaleDateString('vi-VN')}</td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Check-out:</strong></td><td>${new Date(checkOutDate).toLocaleDateString('vi-VN')}</td></tr>
+                        ${specialRequests ? `<tr><td style="padding: 8px 0;"><strong>Yêu cầu:</strong></td><td>${specialRequests}</td></tr>` : ''}
+                    </table>
+                </div>
+                
+                <div style="background: #d4edda; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #28a745;">
+                    <h4 style="color: #155724; margin-top: 0;">💰 Thông Tin Thanh Toán</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr><td style="padding: 8px 0;"><strong>Tổng giá:</strong></td><td style="font-size: 18px;"><strong>${totalPrice.toLocaleString('vi-VN')} VNĐ</strong></td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Đặt cọc (50%):</strong></td><td style="font-size: 20px; color: #e74c3c;"><strong>${depositAmount.toLocaleString('vi-VN')} VNĐ</strong></td></tr>
+                        <tr><td style="padding: 8px 0;"><strong>Thanh toán tại khách sạn:</strong></td><td style="font-size: 18px; color: #27ae60;"><strong>${(totalPrice - depositAmount).toLocaleString('vi-VN')} VNĐ</strong></td></tr>
+                    </table>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <p style="color: #7f8c8d;">Vui lòng truy cập trang quản trị để xác nhận đơn đặt phòng này sau khi nhận được tiền đặt cọc.</p>
+                    <a href="http://localhost:3000/admin.html" style="display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px;">
+                        Vào Trang Quản Trị
+                    </a>
+                </div>
+            </div>
+        `
+    };
+
+    // Send emails
+    transporter.sendMail(customerMailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending customer email:', error);
+        } else {
+            console.log('Customer email sent:', info.response);
+        }
+    });
+
+    transporter.sendMail(adminMailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending admin email:', error);
+        } else {
+            console.log('Admin email sent:', info.response);
+        }
+    });
 }
 
 // Get User Bookings

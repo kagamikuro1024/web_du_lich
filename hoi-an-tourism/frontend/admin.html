@@ -553,7 +553,11 @@
                 return;
             }
 
-            tbody.innerHTML = bookings.map(booking => `
+            tbody.innerHTML = bookings.map(booking => {
+                const depositAmount = booking.deposit_amount || (booking.total_price * 0.5);
+                const paymentStatus = booking.payment_status || 'unpaid';
+                
+                return `
                 <div class="table-row">
                     <div>#${booking.id}</div>
                     <div>${booking.name || 'N/A'}</div>
@@ -563,11 +567,21 @@
                     </div>
                     <div>${formatDate(booking.checkin_date)}</div>
                     <div>${formatDate(booking.checkout_date)}</div>
-                    <div>${getRoomTypeName(booking.room_type)}<br>(${booking.num_rooms || 1} phòng)</div>
+                    <div>
+                        ${getRoomTypeName(booking.room_type)}<br>
+                        (${booking.num_rooms || 1} phòng)<br>
+                        <small style="color: #666;">
+                            💰 ${booking.total_price.toLocaleString('vi-VN')} VNĐ<br>
+                            🏦 Cọc: ${depositAmount.toLocaleString('vi-VN')} VNĐ
+                        </small>
+                    </div>
                     <div>
                         <span class="status-badge status-${booking.status}">
                             ${getStatusName(booking.status)}
-                        </span>
+                        </span><br>
+                        <small style="color: ${paymentStatus === 'paid' ? '#27ae60' : '#e74c3c'}; font-weight: bold; margin-top: 0.3rem; display: block;">
+                            ${paymentStatus === 'paid' ? '✓ Đã thanh toán' : '⚠️ Chưa thanh toán'}
+                        </small>
                     </div>
                     <div class="action-buttons">
                         ${booking.status === 'pending' ? `
@@ -578,7 +592,8 @@
                         `}
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         // Update booking status

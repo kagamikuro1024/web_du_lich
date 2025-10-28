@@ -8,6 +8,15 @@ const API_BASE_URL = window.location.hostname.includes('ngrok')
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthStatus();
     setMinDate();
+    
+    // Kiểm tra xem có cần mở modal đăng nhập không
+    const redirectPath = localStorage.getItem('redirectAfterLogin');
+    if (redirectPath && !localStorage.getItem('authToken')) {
+        // Tự động mở modal đăng nhập nếu được redirect từ trang đặt phòng
+        setTimeout(() => {
+            showAuthModal();
+        }, 500);
+    }
 });
 
 // Set minimum date for date inputs to today
@@ -38,15 +47,29 @@ function updateAuthUI(isLoggedIn, user = null) {
     
     if (isLoggedIn && user) {
         authNav.innerHTML = `
-            <a href="#" class="nav-link" onclick="showDashboard()">
-                Welcome, ${user.username}
+            <a href="#" class="nav-link" onclick="showDashboard(); return false;">
+                👤 ${user.username}
             </a>
         `;
     } else {
         authNav.innerHTML = `
-            <a href="#" class="nav-link" onclick="showAuthModal()">Login</a>
+            <a href="#" class="nav-link" onclick="showAuthModal()">👤 Đăng nhập</a>
         `;
     }
+}
+
+// Check auth for protected pages
+function checkAuth() {
+    const token = localStorage.getItem('authToken');
+    const user = localStorage.getItem('user');
+    
+    if (!token || !user) {
+        showAuthModal();
+        return false;
+    }
+    
+    showDashboard();
+    return true;
 }
 
 // Show authentication modal
@@ -111,9 +134,18 @@ async function handleLogin(event) {
             updateAuthUI(true, data.user);
             closeAuthModal();
             
-            showNotification('Login successful!', 'success');
+            showNotification('Đăng nhập thành công!', 'success');
+            
+            // Kiểm tra xem có cần redirect về trang đặt phòng không
+            const redirectPath = localStorage.getItem('redirectAfterLogin');
+            if (redirectPath) {
+                localStorage.removeItem('redirectAfterLogin');
+                setTimeout(() => {
+                    window.location.href = redirectPath;
+                }, 1000);
+            }
         } else {
-            showNotification(data.message || 'Login failed', 'error');
+            showNotification(data.message || 'Đăng nhập thất bại', 'error');
         }
     } catch (error) {
         console.error('Login error:', error);
@@ -216,26 +248,65 @@ function displayUserBookings(bookings) {
     const bookingsContainer = document.getElementById('userBookings');
     
     if (bookings.length === 0) {
-        bookingsContainer.innerHTML = '<p class="no-bookings">No bookings found.</p>';
+        bookingsContainer.innerHTML = '<p class="no-bookings">Bạn chưa có đơn đặt phòng nào.</p>';
         return;
     }
     
-    const bookingsHTML = bookings.map(booking => `
-        <div class="booking-item">
-            <div class="booking-header">
-                <h4>${booking.hotel_name}</h4>
-                <span class="booking-date">${new Date(booking.booking_date).toLocaleDateString()}</span>
+    const bookingsHTML = bookings.map(booking => {
+        // Status badge
+        let statusClass = 'pending';
+        let statusText = 'Chờ xác nhận';
+        
+        if (booking.status === 'confirmed') {
+            statusClass = 'confirmed';
+            statusText = 'Đã xác nhận';
+        } else if (booking.status === 'cancelled') {
+            statusClass = 'cancelled';
+            statusText = 'Đã hủy';
+        }
+        
+        // Payment status
+        const isPaid = booking.payment_status === 'paid';
+        const paymentClass = isPaid ? 'paid' : 'unpaid';
+        const paymentText = isPaid ? '✓ Đã thanh toán' : '⚠️ Chưa thanh toán';
+        
+        // Format price
+        const formatPrice = (price) => {
+            return new Intl.NumberFormat('vi-VN', { 
+                style: 'currency', 
+                currency: 'VND' 
+            }).format(price);
+        };
+        
+        return `
+            <div class="booking-item">
+                <div class="booking-header">
+                    <div>
+                        <h4>${booking.hotel_name || 'Khách sạn'}</h4>
+                        <span class="booking-date">📅 ${new Date(booking.booking_date).toLocaleDateString('vi-VN')}</span>
+                    </div>
+                    <span class="booking-status ${statusClass}">${statusText}</span>
+                </div>
+                <div class="booking-details">
+                    <div><strong>🏨 Loại phòng:</strong> ${booking.room_type}</div>
+                    <div><strong>📆 Nhận phòng:</strong> ${booking.check_in_date}</div>
+                    <div><strong>📆 Trả phòng:</strong> ${booking.check_out_date}</div>
+                    <div><strong>👥 Số khách:</strong> ${booking.guests}</div>
+                    <div><strong>🚪 Số phòng:</strong> ${booking.num_rooms || 1}</div>
+                    <div><strong>💰 Tổng giá:</strong> ${formatPrice(booking.total_price)}</div>
+                </div>
+                <div class="booking-payment-info">
+                    <div><strong>🏦 Đặt cọc (50%):</strong> ${formatPrice(booking.deposit_amount || booking.total_price * 0.5)}</div>
+                    <div class="payment-status ${paymentClass}">${paymentText}</div>
+                </div>
+                ${booking.special_requests ? `
+                    <div class="booking-notes">
+                        <strong>📝 Yêu cầu đặc biệt:</strong> ${booking.special_requests}
+                    </div>
+                ` : ''}
             </div>
-            <div class="booking-details">
-                <p><strong>Room:</strong> ${booking.room_type}</p>
-                <p><strong>Check-in:</strong> ${booking.check_in_date}</p>
-                <p><strong>Check-out:</strong> ${booking.check_out_date}</p>
-                <p><strong>Guests:</strong> ${booking.guests}</p>
-                <p><strong>Total Price:</strong> $${booking.total_price}</p>
-                ${booking.special_requests ? `<p><strong>Special Requests:</strong> ${booking.special_requests}</p>` : ''}
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
     
     bookingsContainer.innerHTML = bookingsHTML;
 }
